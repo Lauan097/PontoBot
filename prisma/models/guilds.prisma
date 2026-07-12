@@ -1,0 +1,112 @@
+model Guild {
+    id        String @id @default(cuid())
+    discordId String @unique
+
+    name           String
+    icon           String?
+    ownerDiscordId String
+
+    active    Boolean  @default(true)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    links     ServerLink[]
+    templates Template[]
+    memberFlow MemberFlow[]
+    settings  Settings?
+    members   Member[]
+    audits    Audit[]
+
+    @@index([discordId])
+    @@map("guilds")
+}
+
+model Settings {
+    guildId String @id
+    guild   Guild  @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+    weeklyGoalActive  Boolean?
+    weeklyGoalSeconds Int?
+
+    welcomeChannelId       String?
+    pointOpenLogChannelId  String?
+    pointCloseLogChannelId String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("settings")
+}
+
+model Template {
+    id      String @id @default(cuid())
+    guildId String
+    guild   Guild  @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+    name String
+    content Json
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([guildId])
+    @@map("templates")
+}
+
+model ServerLink {
+    id             String       @id @default(cuid())
+
+    guildId        String
+    guild          Guild        @relation(fields: [guildId], references: [id], onDelete: Restrict)
+    subscriptionId String
+    subscription   Subscription @relation(fields: [subscriptionId], references: [userId], onDelete: Cascade)
+
+    linkedByUserId String
+
+    lastKnownMemberCount Int      @default(0)
+    memberCountCheckedAt DateTime @default(now())
+
+    status     ServerLinkStatus @default(active)
+    linkedAt   DateTime         @default(now())
+    unlinkedAt DateTime?
+
+    @@index([guildId])
+    @@index([subscriptionId])
+    @@map("server_links")
+}
+
+enum ServerLinkStatus {
+    active
+    unlinked
+    over_limit
+}
+
+model Audit {
+    id String @id @default(cuid())
+
+    guildId String
+    guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+    userId String
+    targetUserId String?
+
+    action Action
+    oldValue String?
+    newValue String?
+
+    createdAt DateTime @default(now())
+
+    @@index([guildId])
+    @@map("audits")
+}
+
+enum Action {
+    update_global_weekly_goal_duration
+    update_global_weekly_goal_status
+    
+    update_user_weekly_goal_duration
+    update_user_weekly_goal_status
+
+    update_point_open_log_channel_id
+    update_point_close_log_channel_id
+}

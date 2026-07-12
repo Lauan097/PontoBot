@@ -1,0 +1,100 @@
+model Member {
+    id String @id @default(cuid())
+
+    guildId String
+    guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+    weeklyGoalActive  Boolean?
+    weeklyGoalSeconds Int?
+
+    status MemberStatus @default(active)
+
+    discordId   String
+    discordTag  String
+    discordAvatar String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    pointSessions PointSession[]
+
+    @@unique([discordId, guildId])
+    @@index([guildId])
+    @@map("members")
+}
+
+enum MemberStatus {
+    active
+    inactive
+    banned
+    out_of_server
+}
+
+model PointSession {
+    id String @id @default(cuid())
+
+    memberId String
+    member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+    status PointSessionStatus @default(active)
+
+    weeklyGoalSecondsSnapshot Int?
+    voiceChannelId String?
+    activity       String?
+    messageOpenLink  String?
+    messageCloseLink String?
+
+    startedAt DateTime
+    endedAt DateTime?
+    totalSeconds Int?
+
+    initialParticipantsIds String[]
+    finalParticipantsIds   String[]
+    participantsCount      Int?
+
+    initialNotes String?
+    finalNotes   String?
+
+    pauses Pause[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([memberId])
+    @@map("point_sessions")
+}
+
+enum PointSessionStatus {
+    active
+    paused
+    finished
+    cancelled
+}
+
+model Pause {
+    id String @id @default(cuid())
+
+    pointSessionId String
+    pointSession   PointSession @relation(fields: [pointSessionId], references: [id], onDelete: Cascade)
+
+    status PauseStatus @default(active)
+
+    startedAt       DateTime
+    endedAt         DateTime?
+    durationSeconds Int?
+
+    reason String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([pointSessionId])
+    @@map("pauses")
+}
+
+enum PauseStatus {
+    active
+    finished
+    auto_finished
+    cancelled
+}
