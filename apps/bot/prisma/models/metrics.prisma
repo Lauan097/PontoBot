@@ -1,0 +1,21 @@
+model MemberFlow {
+    id      String @id @default(cuid())
+    guildId String
+    guild   Guild  @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+    userId    String
+    userTag   String
+    action    MemberFlowAction
+    createdAt DateTime         @default(now())
+
+    @@index([guildId, userId])
+    @@map("member_flow")
+}
+
+enum MemberFlowAction {
+    join
+    leave
+    ban
+
+    @@map("member_flow_action")
+}

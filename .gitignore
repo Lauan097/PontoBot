@@ -1,0 +1,31 @@
+# Dependências
+**/node_modules/
+
+# Variáveis de ambiente
+**/.env
+**/.env.*
+
+# Build
+**/dist/
+**/.next/
+**/build/
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Cache
+**/.turbo/
+**/.cache/
+
+# Arquivos do TypeScript
+**/*.tsbuildinfo
+
+# Pasta de agentes
+.agents/

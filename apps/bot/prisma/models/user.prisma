@@ -1,0 +1,55 @@
+model User {
+    id        String   @id @default(uuid())
+    discordId String   @unique
+    username  String
+    email     String?
+    avatar    String?
+
+    discordAccessToken    String?
+    discordRefreshToken   String?
+    discordTokenExpiresAt DateTime?
+
+    currentPlanId String
+    currentPlan   Plan   @relation(fields: [currentPlanId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    subscription Subscription?
+
+    @@map("users")
+}
+
+model Subscription {
+    userId String @id
+
+    planId String
+    plan   Plan   @relation(fields: [planId], references: [id])
+
+    mercadoPagoPreapprovalId String @unique
+
+    currentPeriodStart DateTime
+    currentPeriodEnd   DateTime
+    cancelAtPeriodEnd  Boolean
+    trialEnd           DateTime?
+
+    cancelAt   DateTime?
+    canceledAt DateTime?
+
+    status SubscriptionStatus
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user  User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    links ServerLink[]
+
+    @@map("subscriptions")
+}
+
+enum SubscriptionStatus {
+    pending
+    authorized
+    paused
+    cancelled
+}
