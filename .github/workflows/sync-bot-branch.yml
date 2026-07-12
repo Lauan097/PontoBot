@@ -1,0 +1,23 @@
+name: Sync bot subtree
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/bot/**'
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Split subtree
+        run: |
+          git subtree split --prefix=apps/bot -b bot-deploy
+          git push origin bot-deploy --force
