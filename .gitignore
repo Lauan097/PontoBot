@@ -8,7 +8,6 @@
 # Build
 **/dist/
 **/.next/
-**/build/
 
 # Logs
 *.log
