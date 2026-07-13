@@ -40,9 +40,6 @@
         "typescript": "5.9.3"
     },
     "imports": {
-        "#env": [
-            "./build/env.js"
-        ],
         "#base": [
             "./build/discord/index.js"
         ],

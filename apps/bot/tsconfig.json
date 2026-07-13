@@ -11,7 +11,6 @@
 
 		// Path mapping Options
 		"paths": {
-			"#env": ["./src/env.ts"],
 			"#base": ["./src/discord/index.ts"],
 			"#functions": ["./src/functions/index.ts"],
 			"#database": ["./src/database/index.ts"],

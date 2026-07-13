@@ -1,5 +1,4 @@
 import { createEvent } from "#base";
-import { env } from "#env";
 import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
 import ck from "chalk";
@@ -8,7 +7,7 @@ import { registerRoutes } from "./routes/index.js";
 
 const app = fastify();
 
-const url = env.ENV === "dev" ? "http://localhost:3000" : "https://dashboard.pontobot.xyz"
+const url = process.env.ENV === "dev" ? "http://localhost:3000" : "https://dashboard.pontobot.xyz"
 
 app.register(cors, { 
     origin: [url],
@@ -17,7 +16,7 @@ app.register(cors, {
 });
 
 app.register(cookie, {
-    secret: env.INTERNAL_API_SECRET
+    secret: process.env.INTERNAL_API_SECRET
 });
 
 createEvent({
@@ -26,7 +25,7 @@ createEvent({
     async run(client) {
         registerRoutes(app, client);
 
-        const port = env.SERVER_PORT ?? 3000;
+        const port = Number(process.env.SERVER_PORT) || 3000;
 
         await app.listen({ port, host: "0.0.0.0" })
         .then(() => {
