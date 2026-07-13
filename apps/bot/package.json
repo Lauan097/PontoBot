@@ -9,7 +9,8 @@
         "build": "tsup",
         "dev": "tsx --env-file=.env ./src/index.ts",
         "watch": "tsx --watch --env-file=.env ./src/index.ts",
-        "start": "prisma migrate deploy && node ."
+        "start": "node .",
+        "prestart": "prisma migrate deploy"
     },
     "dependencies": {
         "@constatic/base": "latest",
