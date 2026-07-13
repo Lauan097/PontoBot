@@ -20,7 +20,7 @@ import {
 createCommand({
     name: "painel",
     description:
-        "Use para enviar o painel de bate ponto em um canal específico.",
+        "Use para enviar o painel de bate ponto no canal selecionado.",
     type: ApplicationCommandType.ChatInput,
     defaultMemberPermissions: ["Administrator"],
     options: [
