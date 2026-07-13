@@ -12,7 +12,11 @@ import {
     ButtonBuilder,
     ButtonStyle
 } from "discord.js";
-import pkg from "../../../../package.json"
+import { readFile } from "node:fs/promises";
+
+const pkg = JSON.parse(
+    await readFile(new URL("../../../../package.json", import.meta.url), "utf8")
+);
 
 createCommand({
     name: "info",
@@ -72,7 +76,7 @@ createCommand({
                     .setDisabled(true)
                     .setStyle(ButtonStyle.Link),
                     new ButtonBuilder()
-                    .setLabel("Suporte")
+                    .setLabel("Servidor de Suporte")
                     .setURL("https://discord.gg/encgSrYuHd")
                     .setStyle(ButtonStyle.Link),
                 )

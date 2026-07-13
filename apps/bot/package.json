@@ -8,11 +8,9 @@
         "check": "tsc --noEmit && echo ✔ Ok",
         "build": "tsup",
         "dev": "tsx --env-file=.env ./src/index.ts",
-        "dev:dev": "tsx --env-file=.env.dev ./src/index.ts",
         "watch": "tsx --watch --env-file=.env ./src/index.ts",
-        "watch:dev": "tsx --watch --env-file=.env.dev ./src/index.ts",
-        "start": "node .",
-        "start:dev": "node .",
+        "start": "node --env-file=.env .",
+        "poststart": "tsup",
         "prestart": "prisma generate && prisma migrate deploy"
     },
     "dependencies": {
@@ -63,7 +61,7 @@
         "#shared/*": [
             "./build/shared/*"
         ],
-        "#enums/*": [
+        "#enums": [
             "./build/database/prisma/enums.js"
         ]
     },
