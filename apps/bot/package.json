@@ -6,7 +6,7 @@
     "private": true,
     "scripts": {
         "check": "tsc --noEmit && echo ✔ Ok",
-        "build": "tsup && npx prisma generate",
+        "build": "tsup",
         "dev": "tsx --env-file=.env ./src/index.ts",
         "watch": "tsx --watch --env-file=.env ./src/index.ts",
         "start": "node .",
