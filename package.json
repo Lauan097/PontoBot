@@ -9,7 +9,7 @@
         "build": "tsup",
         "dev": "tsx --env-file=.env ./src/index.ts",
         "watch": "tsx --watch --env-file=.env ./src/index.ts",
-        "start": "node --env-file=.env ."
+        "start": "node ."
     },
     "dependencies": {
         "@constatic/base": "latest",
