@@ -12,9 +12,9 @@ createResponder({
                 color: Colors.Green
             }],
             flags: ["Ephemeral"]
-        })
+        });
     }
-})
+});
 
 createResponder({
     customId: "/point/ranking/all",
@@ -26,6 +26,6 @@ createResponder({
                 color: Colors.Green
             }],
             flags: ["Ephemeral"]
-        })
+        });
     }
-})
+});

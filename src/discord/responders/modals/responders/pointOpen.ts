@@ -1,6 +1,6 @@
-import { createResponder } from "#base"
-import { prisma } from "#database"
-import { ResponderType } from "@constatic/base"
+import { createResponder } from "#base";
+import { prisma } from "#database";
+import { ResponderType } from "@constatic/base";
 import { 
     ChannelType,
     Colors,
@@ -10,25 +10,25 @@ import {
     SeparatorSpacingSize,
     TextDisplayBuilder,
     ThumbnailBuilder
-} from "discord.js"
+} from "discord.js";
 import {
     MemberStatus,
     PointSessionStatus
-} from "#enums"
-import { panel } from "../../buttons/panel.js"
-import { getOrCreateGuildMember, icon } from "#functions"
+} from "#enums";
+import { panel } from "../../buttons/panel.js";
+import { getOrCreateGuildMember, icon } from "#functions";
 
 createResponder({
     customId: "/point/open/modal",
     types: [ResponderType.ModalComponent],
     async run(interaction) {
-        await interaction.deferUpdate()
+        await interaction.deferUpdate();
 
         try {
 
             const participants = (interaction.fields.getSelectedUsers("participants")?.map((user) => user.id) || [])
-                .filter((id) => id !== interaction.user.id)
-            const anotations = interaction.fields.getTextInputValue("anotations")
+                .filter((id) => id !== interaction.user.id);
+            const anotations = interaction.fields.getTextInputValue("anotations");
 
             if (!interaction.inGuild()) {
                 await interaction.followUp({
@@ -37,11 +37,11 @@ createResponder({
                         color: Colors.Red
                     }],
                     flags: ["Ephemeral"]
-                })
+                });
                 return;
             }
 
-            const result = await getOrCreateGuildMember(interaction, interaction.guildId, interaction.user.id)
+            const result = await getOrCreateGuildMember(interaction, interaction.guildId, interaction.user.id);
 
             if (!result.success) {
                 await interaction.followUp({
@@ -50,11 +50,11 @@ createResponder({
                         color: Colors.Red
                     }],
                     flags: ["Ephemeral"]
-                })
+                });
                 return;
             }
 
-            const { guild, member, discordMember } = result
+            const { guild, member, discordMember } = result;
 
             if (member.status === MemberStatus.banned) {
                 await interaction.followUp({
@@ -63,7 +63,7 @@ createResponder({
                         color: Colors.Red
                     }],
                     flags: ["Ephemeral"]
-                })
+                });
                 return;
             }
 
@@ -72,7 +72,7 @@ createResponder({
                     memberId: member.id,
                     status: PointSessionStatus.active
                 }
-            })
+            });
 
             if (activeSession) {
                 await interaction.followUp({
@@ -81,7 +81,7 @@ createResponder({
                         color: Colors.Red
                     }],
                     flags: ["Ephemeral"]
-                })
+                });
                 return;
             }
 
@@ -90,7 +90,7 @@ createResponder({
 
             // Suspensa enquanto o Discord não aprovar o uso da intent necessária
             // const activity = discordMember.presence?.activities?.filter((a) => a.type !== 4 && a.type !== 5).map((a) => a.name).join(", ") || null
-            const voiceCh = discordMember.voice.channel?.id
+            const voiceCh = discordMember.voice.channel?.id;
 
             const session = await prisma.pointSession.create({
                 data: {
@@ -104,12 +104,12 @@ createResponder({
                     activity: null,
                     voiceChannelId: voiceCh ?? null
                 }
-            })
+            });
 
-            const channelId = guild.settings?.pointOpenLogChannelId
+            const channelId = guild.settings?.pointOpenLogChannelId;
 
             if (channelId) {
-                const ch = await interaction.client.channels.fetch(channelId).catch(() => null)
+                const ch = await interaction.client.channels.fetch(channelId).catch(() => null);
                 
                 if (ch && ch.type === ChannelType.GuildText) {
                     const m = await ch.send({
@@ -150,26 +150,26 @@ createResponder({
                             )
                         ],
                         flags: ["IsComponentsV2"]
-                    })
+                    });
 
                     if (m) await prisma.pointSession.update({
                         where: { id: session.id },
                         data: { messageOpenLink: m.url }
-                    })
+                    });
                 }
             }
 
-            await panel(interaction)
+            await panel(interaction);
 
         } catch (e) {
-            console.error("[POINT OPEN] Erro ao abrir ponto:", (e as Error).stack || e)
+            console.error("[POINT OPEN] Erro ao abrir ponto:", (e as Error).stack || e);
             await interaction.followUp({
                 embeds: [{
                     description: "Ocorreu um erro ao abrir seu ponto. Tente novamente.",
                     color: Colors.Red
                 }],
                 flags: ["Ephemeral"]
-            })
+            });
         }
     }
-})
+});
