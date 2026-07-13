@@ -10,7 +10,7 @@
         "dev": "tsx --env-file=.env ./src/index.ts",
         "watch": "tsx --watch --env-file=.env ./src/index.ts",
         "start": "node --env-file=.env .",
-        "poststart": "tsup",
+        "preinstall": "tsup",
         "prestart": "prisma generate && prisma migrate deploy"
     },
     "dependencies": {
