@@ -6,10 +6,10 @@
     "private": true,
     "scripts": {
         "check": "tsc --noEmit && echo ✔ Ok",
-        "build": "tsup",
+        "build": "tsup && prisma migrate deploy",
         "dev": "tsx --env-file=.env ./src/index.ts",
         "watch": "tsx --watch --env-file=.env ./src/index.ts",
-        "start": "prisma migrate deploy && node ."
+        "start": "node ."
     },
     "dependencies": {
         "@constatic/base": "latest",
