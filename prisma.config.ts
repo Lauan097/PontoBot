@@ -4,7 +4,9 @@ import { defineConfig } from "prisma/config";
 
 try {
     loadEnvFile(".env");
-} catch {}
+} catch {
+    console.log("DATABASE_URL no ambiente:", process.env.DATABASE_URL ? "existe" : "AUSENTE");
+}
 
 export default defineConfig({
     schema: path.join("prisma"),
