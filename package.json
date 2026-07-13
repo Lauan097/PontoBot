@@ -10,7 +10,7 @@
         "dev": "tsx --env-file=.env ./src/index.ts",
         "watch": "tsx --watch --env-file=.env ./src/index.ts",
         "start": "node .",
-        "postinstall": "prisma migrate deploy"
+        "poststart": "prisma migrate deploy"
     },
     "dependencies": {
         "@constatic/base": "latest",
