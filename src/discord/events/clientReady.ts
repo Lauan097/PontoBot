@@ -6,7 +6,7 @@ createEvent({
     async run(client) {
         const sts = process.env.ENV === "dev" ? "idle" : "online";
         const txt =
-            process.env.ENV === "dev" ? "Em desenvolvimento" : "/info | pontobot.xyz";
+            process.env.ENV === "dev" ? "Em desenvolvimento" : "/info | Open Beta";
 
         await client.user.setPresence({
             status: sts,
