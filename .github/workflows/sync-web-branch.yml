@@ -1,0 +1,23 @@
+name: Sync web subtree
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/web/**'
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Split subtree
+        run: |
+          git subtree split --prefix=apps/web -b web-deploy
+          git push origin web-deploy --force
