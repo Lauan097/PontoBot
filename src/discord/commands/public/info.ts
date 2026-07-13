@@ -57,7 +57,9 @@ createCommand({
                     `- </configurar:${config?.id}> — Use para configurar logs e meta semanal.\n` +
                     `- </status:${status?.id}> — Veja informações sobre o sistema.\n` +
                     `- </painel:${panel?.id}> — Envie o painel de bate ponto a um canal específico.\n` +
-                    `- </info:${info?.id}> — Veja informações sobre o bot.`
+                    `- </info:${info?.id}> — Veja informações sobre o bot.\n\n` +
+                    "### En breve...\n" +
+                    "- Dashboard web para gerenciamento e métricas\n"
                 )
             )
             .addSeparatorComponents(
