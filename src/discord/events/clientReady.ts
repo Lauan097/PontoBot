@@ -8,7 +8,7 @@ createEvent({
         const txt =
             process.env.ENV === "dev"
                 ? "Em desenvolvimento"
-                : "/info | open beta";
+                : "/info | Open beta";
 
         await client.user.setPresence({
             status: sts,
