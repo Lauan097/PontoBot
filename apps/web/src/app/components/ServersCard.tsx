@@ -115,7 +115,7 @@ export function ServersCard({ servers, user }: ServersCardProps) {
           </div>
         </Card>
       ) : (
-        <ScrollArea className="flex-1 max-h-[320px] scroll-fade">
+        <ScrollArea className="flex-1 max-h-80 scroll-fade">
           <div className="grid grid-cols gap-3">
             {[...servers]
               .sort((a, b) => {
@@ -219,9 +219,7 @@ export function ServersCard({ servers, user }: ServersCardProps) {
                           className="text-xs border-border h-8 w-full"
                           onClick={() =>
                             (window.location.href =
-                              "https://discord.com/oauth2/authorize?scope=bot+applications.commands&response_type=code&redirect_uri=http://localhost:3000&permissions=1101596716286&client_id=1519203592014266438&guild_id=" +
-                              server.id +
-                              "&disable_guild_select=true&prompt=none")
+                              "https://discord.com/oauth2/authorize?scope=bot+applications.commands&response_type=code&redirect_uri=http://localhost:3000&prompt=none&permissions=1101596716286&client_id=1519203592014266438")
                           }
                         >
                           Adicionar
