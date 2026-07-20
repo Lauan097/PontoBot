@@ -7,10 +7,13 @@ createResponder({
     types: [ResponderType.Button],
     async run(interaction) {
         await interaction.reply({
-            embeds: [{
-                description: "O ranking semanal estará disponível em breve...",
-                color: Colors.Green
-            }],
+            embeds: [
+                {
+                    description:
+                        "O ranking semanal estará disponível em breve...",
+                    color: Colors.Green
+                }
+            ],
             flags: ["Ephemeral"]
         });
     }
@@ -21,10 +24,13 @@ createResponder({
     types: [ResponderType.Button],
     async run(interaction) {
         await interaction.reply({
-            embeds: [{
-                description: "O ranking global estará disponível em breve...",
-                color: Colors.Green
-            }],
+            embeds: [
+                {
+                    description:
+                        "O ranking global estará disponível em breve...",
+                    color: Colors.Green
+                }
+            ],
             flags: ["Ephemeral"]
         });
     }
