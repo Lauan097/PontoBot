@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth"
+import Image from "next/image"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { ErrorCard } from "./components/ErrorCard"
 import { LoginCard } from "./components/LoginCard"
 import { ServersCard } from "./components/ServersCard"
-import Image from "next/image"
 
 interface FastifyGuild {
   id: string
@@ -74,7 +74,7 @@ export default async function Root() {
           />
           <p className="text-lg font-black text-primary">PontoBot</p>
         </div>
-        <div className="w-full max-w-md h-[490px] border border-border/60 rounded-2xl bg-card/50">
+        <div className="w-full max-w-md h-122 border border-border/60 rounded-2xl bg-card/50">
           <LoginCard />
         </div>
       </div>
@@ -126,7 +126,7 @@ export default async function Root() {
         />
         <p className="text-lg font-black text-primary">PontoBot</p>
       </div>
-      <div className="w-full max-w-md h-[490px] rounded-2xl">
+      <div className="w-full max-w-md h-122 border border-border/60 rounded-2xl bg-card/50">
         {content}
       </div>
     </div>
