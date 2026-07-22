@@ -33,7 +33,6 @@ export type UserMinAggregateOutputType = {
   discordAccessToken: string | null
   discordRefreshToken: string | null
   discordTokenExpiresAt: Date | null
-  currentPlanId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -47,7 +46,6 @@ export type UserMaxAggregateOutputType = {
   discordAccessToken: string | null
   discordRefreshToken: string | null
   discordTokenExpiresAt: Date | null
-  currentPlanId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -61,7 +59,6 @@ export type UserCountAggregateOutputType = {
   discordAccessToken: number
   discordRefreshToken: number
   discordTokenExpiresAt: number
-  currentPlanId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -77,7 +74,6 @@ export type UserMinAggregateInputType = {
   discordAccessToken?: true
   discordRefreshToken?: true
   discordTokenExpiresAt?: true
-  currentPlanId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -91,7 +87,6 @@ export type UserMaxAggregateInputType = {
   discordAccessToken?: true
   discordRefreshToken?: true
   discordTokenExpiresAt?: true
-  currentPlanId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -105,7 +100,6 @@ export type UserCountAggregateInputType = {
   discordAccessToken?: true
   discordRefreshToken?: true
   discordTokenExpiresAt?: true
-  currentPlanId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -192,7 +186,6 @@ export type UserGroupByOutputType = {
   discordAccessToken: string | null
   discordRefreshToken: string | null
   discordTokenExpiresAt: Date | null
-  currentPlanId: string
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -227,11 +220,9 @@ export type UserWhereInput = {
   discordAccessToken?: Prisma.StringNullableFilter<"User"> | string | null
   discordRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   discordTokenExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  currentPlanId?: Prisma.StringFilter<"User"> | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  currentPlan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
-  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
+  subscriptions?: Prisma.SubscriptionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -243,11 +234,9 @@ export type UserOrderByWithRelationInput = {
   discordAccessToken?: Prisma.SortOrderInput | Prisma.SortOrder
   discordRefreshToken?: Prisma.SortOrderInput | Prisma.SortOrder
   discordTokenExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  currentPlanId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  currentPlan?: Prisma.PlanOrderByWithRelationInput
-  subscription?: Prisma.SubscriptionOrderByWithRelationInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -262,11 +251,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   discordAccessToken?: Prisma.StringNullableFilter<"User"> | string | null
   discordRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   discordTokenExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  currentPlanId?: Prisma.StringFilter<"User"> | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  currentPlan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
-  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
+  subscriptions?: Prisma.SubscriptionListRelationFilter
 }, "id" | "discordId">
 
 export type UserOrderByWithAggregationInput = {
@@ -278,7 +265,6 @@ export type UserOrderByWithAggregationInput = {
   discordAccessToken?: Prisma.SortOrderInput | Prisma.SortOrder
   discordRefreshToken?: Prisma.SortOrderInput | Prisma.SortOrder
   discordTokenExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  currentPlanId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -298,7 +284,6 @@ export type UserScalarWhereWithAggregatesInput = {
   discordAccessToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   discordRefreshToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   discordTokenExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  currentPlanId?: Prisma.StringWithAggregatesFilter<"User"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -314,8 +299,7 @@ export type UserCreateInput = {
   discordTokenExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  currentPlan: Prisma.PlanCreateNestedOneWithoutUsersInput
-  subscription?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPayerInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -327,10 +311,9 @@ export type UserUncheckedCreateInput = {
   discordAccessToken?: string | null
   discordRefreshToken?: string | null
   discordTokenExpiresAt?: Date | string | null
-  currentPlanId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPayerInput
 }
 
 export type UserUpdateInput = {
@@ -344,8 +327,7 @@ export type UserUpdateInput = {
   discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPlan?: Prisma.PlanUpdateOneRequiredWithoutUsersNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPayerNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -357,10 +339,9 @@ export type UserUncheckedUpdateInput = {
   discordAccessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentPlanId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPayerNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -372,7 +353,6 @@ export type UserCreateManyInput = {
   discordAccessToken?: string | null
   discordRefreshToken?: string | null
   discordTokenExpiresAt?: Date | string | null
-  currentPlanId: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -399,19 +379,8 @@ export type UserUncheckedUpdateManyInput = {
   discordAccessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentPlanId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserListRelationFilter = {
-  every?: Prisma.UserWhereInput
-  some?: Prisma.UserWhereInput
-  none?: Prisma.UserWhereInput
-}
-
-export type UserOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -423,7 +392,6 @@ export type UserCountOrderByAggregateInput = {
   discordAccessToken?: Prisma.SortOrder
   discordRefreshToken?: Prisma.SortOrder
   discordTokenExpiresAt?: Prisma.SortOrder
-  currentPlanId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -437,7 +405,6 @@ export type UserMaxOrderByAggregateInput = {
   discordAccessToken?: Prisma.SortOrder
   discordRefreshToken?: Prisma.SortOrder
   discordTokenExpiresAt?: Prisma.SortOrder
-  currentPlanId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -451,7 +418,6 @@ export type UserMinOrderByAggregateInput = {
   discordAccessToken?: Prisma.SortOrder
   discordRefreshToken?: Prisma.SortOrder
   discordTokenExpiresAt?: Prisma.SortOrder
-  currentPlanId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -461,63 +427,21 @@ export type UserScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput
 }
 
-export type UserCreateNestedManyWithoutCurrentPlanInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrentPlanInput, Prisma.UserUncheckedCreateWithoutCurrentPlanInput> | Prisma.UserCreateWithoutCurrentPlanInput[] | Prisma.UserUncheckedCreateWithoutCurrentPlanInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrentPlanInput | Prisma.UserCreateOrConnectWithoutCurrentPlanInput[]
-  createMany?: Prisma.UserCreateManyCurrentPlanInputEnvelope
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-}
-
-export type UserUncheckedCreateNestedManyWithoutCurrentPlanInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrentPlanInput, Prisma.UserUncheckedCreateWithoutCurrentPlanInput> | Prisma.UserCreateWithoutCurrentPlanInput[] | Prisma.UserUncheckedCreateWithoutCurrentPlanInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrentPlanInput | Prisma.UserCreateOrConnectWithoutCurrentPlanInput[]
-  createMany?: Prisma.UserCreateManyCurrentPlanInputEnvelope
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-}
-
-export type UserUpdateManyWithoutCurrentPlanNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrentPlanInput, Prisma.UserUncheckedCreateWithoutCurrentPlanInput> | Prisma.UserCreateWithoutCurrentPlanInput[] | Prisma.UserUncheckedCreateWithoutCurrentPlanInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrentPlanInput | Prisma.UserCreateOrConnectWithoutCurrentPlanInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCurrentPlanInput | Prisma.UserUpsertWithWhereUniqueWithoutCurrentPlanInput[]
-  createMany?: Prisma.UserCreateManyCurrentPlanInputEnvelope
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCurrentPlanInput | Prisma.UserUpdateWithWhereUniqueWithoutCurrentPlanInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCurrentPlanInput | Prisma.UserUpdateManyWithWhereWithoutCurrentPlanInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-}
-
-export type UserUncheckedUpdateManyWithoutCurrentPlanNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCurrentPlanInput, Prisma.UserUncheckedCreateWithoutCurrentPlanInput> | Prisma.UserCreateWithoutCurrentPlanInput[] | Prisma.UserUncheckedCreateWithoutCurrentPlanInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCurrentPlanInput | Prisma.UserCreateOrConnectWithoutCurrentPlanInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCurrentPlanInput | Prisma.UserUpsertWithWhereUniqueWithoutCurrentPlanInput[]
-  createMany?: Prisma.UserCreateManyCurrentPlanInputEnvelope
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCurrentPlanInput | Prisma.UserUpdateWithWhereUniqueWithoutCurrentPlanInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCurrentPlanInput | Prisma.UserUpdateManyWithWhereWithoutCurrentPlanInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-}
-
-export type UserCreateNestedOneWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionInput
+export type UserCreateNestedOneWithoutSubscriptionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionInput
-  upsert?: Prisma.UserUpsertWithoutSubscriptionInput
+export type UserUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
+  upsert?: Prisma.UserUpsertWithoutSubscriptionsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.UserUpdateWithoutSubscriptionInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.UserUpdateWithoutSubscriptionsInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
 }
 
-export type UserCreateWithoutCurrentPlanInput = {
+export type UserCreateWithoutSubscriptionsInput = {
   id?: string
   discordId: string
   username: string
@@ -528,10 +452,9 @@ export type UserCreateWithoutCurrentPlanInput = {
   discordTokenExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscription?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCurrentPlanInput = {
+export type UserUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
   discordId: string
   username: string
@@ -542,166 +465,25 @@ export type UserUncheckedCreateWithoutCurrentPlanInput = {
   discordTokenExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutCurrentPlanInput = {
+export type UserCreateOrConnectWithoutSubscriptionsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCurrentPlanInput, Prisma.UserUncheckedCreateWithoutCurrentPlanInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
 }
 
-export type UserCreateManyCurrentPlanInputEnvelope = {
-  data: Prisma.UserCreateManyCurrentPlanInput | Prisma.UserCreateManyCurrentPlanInput[]
-  skipDuplicates?: boolean
-}
-
-export type UserUpsertWithWhereUniqueWithoutCurrentPlanInput = {
-  where: Prisma.UserWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCurrentPlanInput, Prisma.UserUncheckedUpdateWithoutCurrentPlanInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCurrentPlanInput, Prisma.UserUncheckedCreateWithoutCurrentPlanInput>
-}
-
-export type UserUpdateWithWhereUniqueWithoutCurrentPlanInput = {
-  where: Prisma.UserWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCurrentPlanInput, Prisma.UserUncheckedUpdateWithoutCurrentPlanInput>
-}
-
-export type UserUpdateManyWithWhereWithoutCurrentPlanInput = {
-  where: Prisma.UserScalarWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutCurrentPlanInput>
-}
-
-export type UserScalarWhereInput = {
-  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  OR?: Prisma.UserScalarWhereInput[]
-  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  id?: Prisma.StringFilter<"User"> | string
-  discordId?: Prisma.StringFilter<"User"> | string
-  username?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringNullableFilter<"User"> | string | null
-  avatar?: Prisma.StringNullableFilter<"User"> | string | null
-  discordAccessToken?: Prisma.StringNullableFilter<"User"> | string | null
-  discordRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
-  discordTokenExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  currentPlanId?: Prisma.StringFilter<"User"> | string
-  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-}
-
-export type UserCreateWithoutSubscriptionInput = {
-  id?: string
-  discordId: string
-  username: string
-  email?: string | null
-  avatar?: string | null
-  discordAccessToken?: string | null
-  discordRefreshToken?: string | null
-  discordTokenExpiresAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  currentPlan: Prisma.PlanCreateNestedOneWithoutUsersInput
-}
-
-export type UserUncheckedCreateWithoutSubscriptionInput = {
-  id?: string
-  discordId: string
-  username: string
-  email?: string | null
-  avatar?: string | null
-  discordAccessToken?: string | null
-  discordRefreshToken?: string | null
-  discordTokenExpiresAt?: Date | string | null
-  currentPlanId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type UserCreateOrConnectWithoutSubscriptionInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
-}
-
-export type UserUpsertWithoutSubscriptionInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionInput, Prisma.UserUncheckedUpdateWithoutSubscriptionInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
+export type UserUpsertWithoutSubscriptionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutSubscriptionInput = {
+export type UserUpdateToOneWithWhereWithoutSubscriptionsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionInput, Prisma.UserUncheckedUpdateWithoutSubscriptionInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
 }
 
-export type UserUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  discordId?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordAccessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  currentPlan?: Prisma.PlanUpdateOneRequiredWithoutUsersNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  discordId?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordAccessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  currentPlanId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserCreateManyCurrentPlanInput = {
-  id?: string
-  discordId: string
-  username: string
-  email?: string | null
-  avatar?: string | null
-  discordAccessToken?: string | null
-  discordRefreshToken?: string | null
-  discordTokenExpiresAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type UserUpdateWithoutCurrentPlanInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  discordId?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordAccessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutCurrentPlanInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  discordId?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordAccessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateManyWithoutCurrentPlanInput = {
+export type UserUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   discordId?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
@@ -714,6 +496,48 @@ export type UserUncheckedUpdateManyWithoutCurrentPlanInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type UserUncheckedUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  discordId?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discordAccessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discordRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discordTokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  subscriptions: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -725,11 +549,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   discordAccessToken?: boolean
   discordRefreshToken?: boolean
   discordTokenExpiresAt?: boolean
-  currentPlanId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  currentPlan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.User$subscriptionArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -741,10 +564,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   discordAccessToken?: boolean
   discordRefreshToken?: boolean
   discordTokenExpiresAt?: boolean
-  currentPlanId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  currentPlan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -756,10 +577,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   discordAccessToken?: boolean
   discordRefreshToken?: boolean
   discordTokenExpiresAt?: boolean
-  currentPlanId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  currentPlan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -771,28 +590,22 @@ export type UserSelectScalar = {
   discordAccessToken?: boolean
   discordRefreshToken?: boolean
   discordTokenExpiresAt?: boolean
-  currentPlanId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "discordId" | "username" | "email" | "avatar" | "discordAccessToken" | "discordRefreshToken" | "discordTokenExpiresAt" | "currentPlanId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "discordId" | "username" | "email" | "avatar" | "discordAccessToken" | "discordRefreshToken" | "discordTokenExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  currentPlan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.User$subscriptionArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  currentPlan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  currentPlan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
-}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    currentPlan: Prisma.$PlanPayload<ExtArgs>
-    subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -803,7 +616,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     discordAccessToken: string | null
     discordRefreshToken: string | null
     discordTokenExpiresAt: Date | null
-    currentPlanId: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1200,8 +1012,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  currentPlan<T extends Prisma.PlanDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanDefaultArgs<ExtArgs>>): Prisma.Prisma__PlanClient<runtime.Types.Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  subscription<T extends Prisma.User$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1239,7 +1050,6 @@ export interface UserFieldRefs {
   readonly discordAccessToken: Prisma.FieldRef<"User", 'String'>
   readonly discordRefreshToken: Prisma.FieldRef<"User", 'String'>
   readonly discordTokenExpiresAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly currentPlanId: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -1496,10 +1306,6 @@ export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1570,10 +1376,6 @@ export type UserUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Users to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1643,9 +1445,9 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.subscription
+ * User.subscriptions
  */
-export type User$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Subscription
    */
@@ -1659,6 +1461,11 @@ export type User$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.SubscriptionInclude<ExtArgs> | null
   where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
 }
 
 /**

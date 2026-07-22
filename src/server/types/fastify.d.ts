@@ -11,7 +11,7 @@ export type AuthenticatedUser = Pick<
     | "discordRefreshToken"
     | "discordTokenExpiresAt"
 > & {
-    subscription: { status: SubscriptionStatus; currentPeriodEnd: Date } | null
+    subscriptions: { status: SubscriptionStatus; currentPeriodEnd: Date }[]
 }
 
 import "@fastify/jwt"

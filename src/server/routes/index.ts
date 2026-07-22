@@ -6,6 +6,7 @@ import { homeRoute } from "./public/home.js"
 import { syncRoute } from "./private/auth/sync.js"
 import { guildsRoute } from "./private/data/guilds.js"
 import { initialPageRoute } from "./private/data/initialPage.js"
+import { pmSettingsRoute } from "./private/settings/pmSettings.js"
 
 export function registerRoutes(app: FastifyInstance, client: Client<true>) {
     // Public Routes
@@ -15,4 +16,5 @@ export function registerRoutes(app: FastifyInstance, client: Client<true>) {
     syncRoute(app)
     guildsRoute(app, client)
     initialPageRoute(app, client)
+    pmSettingsRoute(app, client)
 }

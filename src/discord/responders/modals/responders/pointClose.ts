@@ -172,6 +172,23 @@ createResponder({
                             .addSeparatorComponents(
                                 new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(false)
                             )
+                            .addTextDisplayComponents(
+                                new TextDisplayBuilder().setContent(
+                                    `- **Participantes Iniciais:** ${session.initialParticipantsIds.length > 0 ? `\n  - ${session.initialParticipantsIds.map((id) => `<@${id}>`).join("\n  - ")}` : "Nenhum"}\n\n` +
+                                    `- **Participantes Finais:** ${finalParticipants.length > 0 ? `\n  - ${finalParticipants.map((id) => `<@${id}>`).join("\n  - ")}` : "Nenhum"}`
+                                )
+                            )
+                            .addSeparatorComponents(
+                                new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(false)
+                            )
+                            .addTextDisplayComponents(
+                                new TextDisplayBuilder().setContent(
+                                    `### Relatório Final:\n${report}`
+                                )
+                            )
+                            .addSeparatorComponents(
+                                new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large)
+                            )
                             .addSectionComponents(
                                 new SectionBuilder()
                                 .setButtonAccessory(
@@ -182,17 +199,8 @@ createResponder({
                                 )
                                 .addTextDisplayComponents(
                                     new TextDisplayBuilder().setContent(
-                                        `- **Participantes Iniciais:** ${session.initialParticipantsIds.length > 0 ? `\n  - ${session.initialParticipantsIds.map((id) => `<@${id}>`).join("\n  - ")}` : "Nenhum"}\n\n` +
-                                        `- **Participantes Adicionais:** ${finalParticipants.length > 0 ? `\n  - ${finalParticipants.map((id) => `<@${id}>`).join("\n  - ")}` : "Nenhum"}`
+                                        `> Powered by **PontoBot**`
                                     )
-                                )
-                            )
-                            .addSeparatorComponents(
-                                new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(false)
-                            )
-                            .addTextDisplayComponents(
-                                new TextDisplayBuilder().setContent(
-                                    `### Relatório Final:\n${report}`
                                 )
                             )
                         ],

@@ -62,11 +62,6 @@ export type Settings = Prisma.SettingsModel
  */
 export type Template = Prisma.TemplateModel
 /**
- * Model ServerLink
- * 
- */
-export type ServerLink = Prisma.ServerLinkModel
-/**
  * Model Audit
  * 
  */

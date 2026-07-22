@@ -1,4 +1,3 @@
-import { createCommand } from "#base";
 import {
     ApplicationCommandType,
     ContainerBuilder,
@@ -6,6 +5,9 @@ import {
     TextDisplayBuilder,
     ThumbnailBuilder
 } from "discord.js";
+import { prisma } from "#database";
+import { createCommand } from "#base";
+import { PointSessionStatus } from "#enums";
 
 createCommand({
     name: "status",
@@ -16,6 +18,12 @@ createCommand({
             (acc, guild) => acc + guild.memberCount,
             0
         );
+
+        const activeSessions = await prisma.pointSession.count({
+            where: {
+                status: PointSessionStatus.active
+            }
+        })
 
         await interaction.reply({
             components: [
@@ -40,7 +48,8 @@ createCommand({
                             new TextDisplayBuilder().setContent(
                                 `- Servidores — **${interaction.client.guilds.cache.size}**\n` +
                                     `- Membros — **${totalMembros}**\n` +
-                                    `- Canais — **${interaction.client.channels.cache.size}**\n`
+                                    `- Canais — **${interaction.client.channels.cache.size}**\n` +
+                                    `- Sessões ativas — **${activeSessions}**\n`
                             )
                         )
                 )

@@ -9,19 +9,22 @@ model User {
     discordRefreshToken   String?
     discordTokenExpiresAt DateTime?
 
-    currentPlanId String
-    currentPlan   Plan   @relation(fields: [currentPlanId], references: [id])
-
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    subscription Subscription?
+    subscriptions Subscription[]
 
     @@map("users")
 }
 
 model Subscription {
-    userId String @id
+    id String @id @default(cuid())
+
+    guildId String    @unique
+    guild   Guild     @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+    payerId String
+    payer   User   @relation(fields: [payerId], references: [id])
 
     planId String
     plan   Plan   @relation(fields: [planId], references: [id])
@@ -41,9 +44,7 @@ model Subscription {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    user  User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-    links ServerLink[]
-
+    @@index([payerId])
     @@map("subscriptions")
 }
 

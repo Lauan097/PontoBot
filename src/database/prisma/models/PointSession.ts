@@ -721,6 +721,10 @@ export type EnumPointSessionStatusFieldUpdateOperationsInput = {
   set?: $Enums.PointSessionStatus
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type PointSessionUpdateinitialParticipantsIdsInput = {
   set?: string[]
   push?: string | string[]

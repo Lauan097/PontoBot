@@ -58,7 +58,7 @@ createCommand({
                     `- </status:${status?.id}> — Veja informações sobre o sistema.\n` +
                     `- </painel:${panel?.id}> — Envie o painel de bate ponto a um canal específico.\n` +
                     `- </info:${info?.id}> — Veja informações sobre o bot.\n\n` +
-                    "### En breve...\n" +
+                    "### Em breve...\n" +
                     "- Dashboard web para gerenciamento e métricas\n"
                 )
             )
