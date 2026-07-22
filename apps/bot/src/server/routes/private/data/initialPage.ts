@@ -5,12 +5,11 @@ import { authenticate } from "../../../hooks/auth.js"
 import { isAdmin } from "../../../hooks/isAdmin.js"
 
 export function initialPageRoute(app: FastifyInstance, client: Client) {
-    app.get("/initial-page/:guildId", { preHandler: authenticate }, async (req, res) => {
+    app.get("/guilds/:guildId/initial-page", { preHandler: authenticate }, async (req, res) => {
         try {
             const { guildId } = req.params as { guildId: string };
             const { user } = req;
 
-            // 1. Verificar se o usuário é administrador ou dono do servidor solicitado
             const adminCheck = await isAdmin({
                 client,
                 guildId,
@@ -24,7 +23,6 @@ export function initialPageRoute(app: FastifyInstance, client: Client) {
                 });
             }
 
-            // 2. Buscar a lista de servidores compartilhados diretamente do cache do bot
             const guildPromises = Array.from(client.guilds.cache.values()).map(async (guild) => {
                 try {
                     const member = await guild.members.fetch(user.discordId);
@@ -41,7 +39,7 @@ export function initialPageRoute(app: FastifyInstance, client: Client) {
                         };
                     }
                 } catch {
-                    // Se o usuário não for membro deste servidor, o fetch falha e ignoramos
+                    
                 }
                 return undefined;
             });
@@ -49,7 +47,6 @@ export function initialPageRoute(app: FastifyInstance, client: Client) {
             const results = await Promise.all(guildPromises);
             const sharedGuilds = results.filter((g): g is NonNullable<typeof g> => g !== undefined);
 
-            // 3. Montar o perfil do usuário
             const cachedUser = client.users.cache.get(user.discordId);
             const userProfile = {
                 name: cachedUser?.displayName || user.username,

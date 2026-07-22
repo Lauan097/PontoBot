@@ -17,7 +17,7 @@ export async function authenticate(req: FastifyRequest, res: FastifyReply) {
         const user = await prisma.user.findUnique({
             where: { id: userId },
             include: {
-                subscription: {
+                subscriptions: {
                     select: { status: true, currentPeriodEnd: true }
                 }
             }

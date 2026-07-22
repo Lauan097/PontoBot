@@ -27,52 +27,44 @@ export type AggregatePlan = {
 }
 
 export type PlanAvgAggregateOutputType = {
-  maxServers: number | null
-  maxMembersPool: number | null
+  maxUsers: number | null
   priceCents: number | null
 }
 
 export type PlanSumAggregateOutputType = {
-  maxServers: number | null
-  maxMembersPool: number | null
+  maxUsers: number | null
   priceCents: number | null
 }
 
 export type PlanMinAggregateOutputType = {
   id: string | null
-  slug: string | null
   name: string | null
-  maxServers: number | null
-  maxMembersPool: number | null
+  slug: $Enums.Slug | null
+  maxUsers: number | null
   priceCents: number | null
   mercadoPagoPlanId: string | null
-  active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type PlanMaxAggregateOutputType = {
   id: string | null
-  slug: string | null
   name: string | null
-  maxServers: number | null
-  maxMembersPool: number | null
+  slug: $Enums.Slug | null
+  maxUsers: number | null
   priceCents: number | null
   mercadoPagoPlanId: string | null
-  active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type PlanCountAggregateOutputType = {
   id: number
-  slug: number
   name: number
-  maxServers: number
-  maxMembersPool: number
+  slug: number
+  maxUsers: number
   priceCents: number
   mercadoPagoPlanId: number
-  active: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -80,52 +72,44 @@ export type PlanCountAggregateOutputType = {
 
 
 export type PlanAvgAggregateInputType = {
-  maxServers?: true
-  maxMembersPool?: true
+  maxUsers?: true
   priceCents?: true
 }
 
 export type PlanSumAggregateInputType = {
-  maxServers?: true
-  maxMembersPool?: true
+  maxUsers?: true
   priceCents?: true
 }
 
 export type PlanMinAggregateInputType = {
   id?: true
-  slug?: true
   name?: true
-  maxServers?: true
-  maxMembersPool?: true
+  slug?: true
+  maxUsers?: true
   priceCents?: true
   mercadoPagoPlanId?: true
-  active?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type PlanMaxAggregateInputType = {
   id?: true
-  slug?: true
   name?: true
-  maxServers?: true
-  maxMembersPool?: true
+  slug?: true
+  maxUsers?: true
   priceCents?: true
   mercadoPagoPlanId?: true
-  active?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type PlanCountAggregateInputType = {
   id?: true
-  slug?: true
   name?: true
-  maxServers?: true
-  maxMembersPool?: true
+  slug?: true
+  maxUsers?: true
   priceCents?: true
   mercadoPagoPlanId?: true
-  active?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -219,13 +203,11 @@ export type PlanGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type PlanGroupByOutputType = {
   id: string
-  slug: string
   name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
+  slug: $Enums.Slug | null
+  maxUsers: number | null
+  priceCents: number | null
   mercadoPagoPlanId: string | null
-  active: boolean
   createdAt: Date
   updatedAt: Date
   _count: PlanCountAggregateOutputType | null
@@ -255,61 +237,50 @@ export type PlanWhereInput = {
   OR?: Prisma.PlanWhereInput[]
   NOT?: Prisma.PlanWhereInput | Prisma.PlanWhereInput[]
   id?: Prisma.StringFilter<"Plan"> | string
-  slug?: Prisma.StringFilter<"Plan"> | string
   name?: Prisma.StringFilter<"Plan"> | string
-  maxServers?: Prisma.IntFilter<"Plan"> | number
-  maxMembersPool?: Prisma.IntFilter<"Plan"> | number
-  priceCents?: Prisma.IntFilter<"Plan"> | number
+  slug?: Prisma.EnumSlugNullableFilter<"Plan"> | $Enums.Slug | null
+  maxUsers?: Prisma.IntNullableFilter<"Plan"> | number | null
+  priceCents?: Prisma.IntNullableFilter<"Plan"> | number | null
   mercadoPagoPlanId?: Prisma.StringNullableFilter<"Plan"> | string | null
-  active?: Prisma.BoolFilter<"Plan"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
-  users?: Prisma.UserListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
 }
 
 export type PlanOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  maxServers?: Prisma.SortOrder
-  maxMembersPool?: Prisma.SortOrder
-  priceCents?: Prisma.SortOrder
+  slug?: Prisma.SortOrderInput | Prisma.SortOrder
+  maxUsers?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceCents?: Prisma.SortOrderInput | Prisma.SortOrder
   mercadoPagoPlanId?: Prisma.SortOrderInput | Prisma.SortOrder
-  active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  users?: Prisma.UserOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
 }
 
 export type PlanWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  slug?: string
+  slug?: $Enums.Slug
   AND?: Prisma.PlanWhereInput | Prisma.PlanWhereInput[]
   OR?: Prisma.PlanWhereInput[]
   NOT?: Prisma.PlanWhereInput | Prisma.PlanWhereInput[]
   name?: Prisma.StringFilter<"Plan"> | string
-  maxServers?: Prisma.IntFilter<"Plan"> | number
-  maxMembersPool?: Prisma.IntFilter<"Plan"> | number
-  priceCents?: Prisma.IntFilter<"Plan"> | number
+  maxUsers?: Prisma.IntNullableFilter<"Plan"> | number | null
+  priceCents?: Prisma.IntNullableFilter<"Plan"> | number | null
   mercadoPagoPlanId?: Prisma.StringNullableFilter<"Plan"> | string | null
-  active?: Prisma.BoolFilter<"Plan"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
-  users?: Prisma.UserListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
 }, "id" | "slug">
 
 export type PlanOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  maxServers?: Prisma.SortOrder
-  maxMembersPool?: Prisma.SortOrder
-  priceCents?: Prisma.SortOrder
+  slug?: Prisma.SortOrderInput | Prisma.SortOrder
+  maxUsers?: Prisma.SortOrderInput | Prisma.SortOrder
+  priceCents?: Prisma.SortOrderInput | Prisma.SortOrder
   mercadoPagoPlanId?: Prisma.SortOrderInput | Prisma.SortOrder
-  active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanCountOrderByAggregateInput
@@ -324,164 +295,136 @@ export type PlanScalarWhereWithAggregatesInput = {
   OR?: Prisma.PlanScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PlanScalarWhereWithAggregatesInput | Prisma.PlanScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Plan"> | string
-  slug?: Prisma.StringWithAggregatesFilter<"Plan"> | string
   name?: Prisma.StringWithAggregatesFilter<"Plan"> | string
-  maxServers?: Prisma.IntWithAggregatesFilter<"Plan"> | number
-  maxMembersPool?: Prisma.IntWithAggregatesFilter<"Plan"> | number
-  priceCents?: Prisma.IntWithAggregatesFilter<"Plan"> | number
+  slug?: Prisma.EnumSlugNullableWithAggregatesFilter<"Plan"> | $Enums.Slug | null
+  maxUsers?: Prisma.IntNullableWithAggregatesFilter<"Plan"> | number | null
+  priceCents?: Prisma.IntNullableWithAggregatesFilter<"Plan"> | number | null
   mercadoPagoPlanId?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
-  active?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
 }
 
 export type PlanCreateInput = {
   id?: string
-  slug: string
   name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
+  slug?: $Enums.Slug | null
+  maxUsers?: number | null
+  priceCents?: number | null
   mercadoPagoPlanId?: string | null
-  active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutCurrentPlanInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateInput = {
   id?: string
-  slug: string
   name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
+  slug?: $Enums.Slug | null
+  maxUsers?: number | null
+  priceCents?: number | null
   mercadoPagoPlanId?: string | null
-  active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCurrentPlanInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
+  slug?: Prisma.NullableEnumSlugFieldUpdateOperationsInput | $Enums.Slug | null
+  maxUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutCurrentPlanNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
+  slug?: Prisma.NullableEnumSlugFieldUpdateOperationsInput | $Enums.Slug | null
+  maxUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutCurrentPlanNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateManyInput = {
   id?: string
-  slug: string
   name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
+  slug?: $Enums.Slug | null
+  maxUsers?: number | null
+  priceCents?: number | null
   mercadoPagoPlanId?: string | null
-  active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type PlanUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
+  slug?: Prisma.NullableEnumSlugFieldUpdateOperationsInput | $Enums.Slug | null
+  maxUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PlanUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
+  slug?: Prisma.NullableEnumSlugFieldUpdateOperationsInput | $Enums.Slug | null
+  maxUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PlanCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  maxServers?: Prisma.SortOrder
-  maxMembersPool?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  maxUsers?: Prisma.SortOrder
   priceCents?: Prisma.SortOrder
   mercadoPagoPlanId?: Prisma.SortOrder
-  active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type PlanAvgOrderByAggregateInput = {
-  maxServers?: Prisma.SortOrder
-  maxMembersPool?: Prisma.SortOrder
+  maxUsers?: Prisma.SortOrder
   priceCents?: Prisma.SortOrder
 }
 
 export type PlanMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  maxServers?: Prisma.SortOrder
-  maxMembersPool?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  maxUsers?: Prisma.SortOrder
   priceCents?: Prisma.SortOrder
   mercadoPagoPlanId?: Prisma.SortOrder
-  active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type PlanMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  maxServers?: Prisma.SortOrder
-  maxMembersPool?: Prisma.SortOrder
+  slug?: Prisma.SortOrder
+  maxUsers?: Prisma.SortOrder
   priceCents?: Prisma.SortOrder
   mercadoPagoPlanId?: Prisma.SortOrder
-  active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type PlanSumOrderByAggregateInput = {
-  maxServers?: Prisma.SortOrder
-  maxMembersPool?: Prisma.SortOrder
+  maxUsers?: Prisma.SortOrder
   priceCents?: Prisma.SortOrder
 }
 
@@ -494,8 +437,12 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
+export type NullableEnumSlugFieldUpdateOperationsInput = {
+  set?: $Enums.Slug | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
@@ -506,26 +453,8 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
-}
-
-export type PlanCreateNestedOneWithoutUsersInput = {
-  create?: Prisma.XOR<Prisma.PlanCreateWithoutUsersInput, Prisma.PlanUncheckedCreateWithoutUsersInput>
-  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutUsersInput
-  connect?: Prisma.PlanWhereUniqueInput
-}
-
-export type PlanUpdateOneRequiredWithoutUsersNestedInput = {
-  create?: Prisma.XOR<Prisma.PlanCreateWithoutUsersInput, Prisma.PlanUncheckedCreateWithoutUsersInput>
-  connectOrCreate?: Prisma.PlanCreateOrConnectWithoutUsersInput
-  upsert?: Prisma.PlanUpsertWithoutUsersInput
-  connect?: Prisma.PlanWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutUsersInput, Prisma.PlanUpdateWithoutUsersInput>, Prisma.PlanUncheckedUpdateWithoutUsersInput>
 }
 
 export type PlanCreateNestedOneWithoutSubscriptionsInput = {
@@ -542,104 +471,26 @@ export type PlanUpdateOneRequiredWithoutSubscriptionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlanUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.PlanUpdateWithoutSubscriptionsInput>, Prisma.PlanUncheckedUpdateWithoutSubscriptionsInput>
 }
 
-export type PlanCreateWithoutUsersInput = {
-  id?: string
-  slug: string
-  name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
-  mercadoPagoPlanId?: string | null
-  active?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
-}
-
-export type PlanUncheckedCreateWithoutUsersInput = {
-  id?: string
-  slug: string
-  name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
-  mercadoPagoPlanId?: string | null
-  active?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
-}
-
-export type PlanCreateOrConnectWithoutUsersInput = {
-  where: Prisma.PlanWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlanCreateWithoutUsersInput, Prisma.PlanUncheckedCreateWithoutUsersInput>
-}
-
-export type PlanUpsertWithoutUsersInput = {
-  update: Prisma.XOR<Prisma.PlanUpdateWithoutUsersInput, Prisma.PlanUncheckedUpdateWithoutUsersInput>
-  create: Prisma.XOR<Prisma.PlanCreateWithoutUsersInput, Prisma.PlanUncheckedCreateWithoutUsersInput>
-  where?: Prisma.PlanWhereInput
-}
-
-export type PlanUpdateToOneWithWhereWithoutUsersInput = {
-  where?: Prisma.PlanWhereInput
-  data: Prisma.XOR<Prisma.PlanUpdateWithoutUsersInput, Prisma.PlanUncheckedUpdateWithoutUsersInput>
-}
-
-export type PlanUpdateWithoutUsersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
-  mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
-}
-
-export type PlanUncheckedUpdateWithoutUsersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
-  mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
-}
-
 export type PlanCreateWithoutSubscriptionsInput = {
   id?: string
-  slug: string
   name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
+  slug?: $Enums.Slug | null
+  maxUsers?: number | null
+  priceCents?: number | null
   mercadoPagoPlanId?: string | null
-  active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutCurrentPlanInput
 }
 
 export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
-  slug: string
   name: string
-  maxServers: number
-  maxMembersPool: number
-  priceCents: number
+  slug?: $Enums.Slug | null
+  maxUsers?: number | null
+  priceCents?: number | null
   mercadoPagoPlanId?: string | null
-  active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCurrentPlanInput
 }
 
 export type PlanCreateOrConnectWithoutSubscriptionsInput = {
@@ -660,30 +511,24 @@ export type PlanUpdateToOneWithWhereWithoutSubscriptionsInput = {
 
 export type PlanUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
+  slug?: Prisma.NullableEnumSlugFieldUpdateOperationsInput | $Enums.Slug | null
+  maxUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutCurrentPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  maxServers?: Prisma.IntFieldUpdateOperationsInput | number
-  maxMembersPool?: Prisma.IntFieldUpdateOperationsInput | number
-  priceCents?: Prisma.IntFieldUpdateOperationsInput | number
+  slug?: Prisma.NullableEnumSlugFieldUpdateOperationsInput | $Enums.Slug | null
+  maxUsers?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  priceCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mercadoPagoPlanId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUncheckedUpdateManyWithoutCurrentPlanNestedInput
 }
 
 
@@ -692,12 +537,10 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
  */
 
 export type PlanCountOutputType = {
-  users: number
   subscriptions: number
 }
 
 export type PlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | PlanCountOutputTypeCountUsersArgs
   subscriptions?: boolean | PlanCountOutputTypeCountSubscriptionsArgs
 }
 
@@ -714,13 +557,6 @@ export type PlanCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * PlanCountOutputType without action
  */
-export type PlanCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
-}
-
-/**
- * PlanCountOutputType without action
- */
 export type PlanCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SubscriptionWhereInput
 }
@@ -728,62 +564,52 @@ export type PlanCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Ty
 
 export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  slug?: boolean
   name?: boolean
-  maxServers?: boolean
-  maxMembersPool?: boolean
+  slug?: boolean
+  maxUsers?: boolean
   priceCents?: boolean
   mercadoPagoPlanId?: boolean
-  active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  users?: boolean | Prisma.Plan$usersArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["plan"]>
 
 export type PlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  slug?: boolean
   name?: boolean
-  maxServers?: boolean
-  maxMembersPool?: boolean
+  slug?: boolean
+  maxUsers?: boolean
   priceCents?: boolean
   mercadoPagoPlanId?: boolean
-  active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
 
 export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  slug?: boolean
   name?: boolean
-  maxServers?: boolean
-  maxMembersPool?: boolean
+  slug?: boolean
+  maxUsers?: boolean
   priceCents?: boolean
   mercadoPagoPlanId?: boolean
-  active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
 
 export type PlanSelectScalar = {
   id?: boolean
-  slug?: boolean
   name?: boolean
-  maxServers?: boolean
-  maxMembersPool?: boolean
+  slug?: boolean
+  maxUsers?: boolean
   priceCents?: boolean
   mercadoPagoPlanId?: boolean
-  active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "name" | "maxServers" | "maxMembersPool" | "priceCents" | "mercadoPagoPlanId" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
+export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "maxUsers" | "priceCents" | "mercadoPagoPlanId" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
 export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | Prisma.Plan$usersArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -793,18 +619,15 @@ export type PlanIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Plan"
   objects: {
-    users: Prisma.$UserPayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    slug: string
     name: string
-    maxServers: number
-    maxMembersPool: number
-    priceCents: number
+    slug: $Enums.Slug | null
+    maxUsers: number | null
+    priceCents: number | null
     mercadoPagoPlanId: string | null
-    active: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["plan"]>
@@ -1201,7 +1024,6 @@ readonly fields: PlanFieldRefs;
  */
 export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  users<T extends Prisma.Plan$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.Plan$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1233,13 +1055,11 @@ export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface PlanFieldRefs {
   readonly id: Prisma.FieldRef<"Plan", 'String'>
-  readonly slug: Prisma.FieldRef<"Plan", 'String'>
   readonly name: Prisma.FieldRef<"Plan", 'String'>
-  readonly maxServers: Prisma.FieldRef<"Plan", 'Int'>
-  readonly maxMembersPool: Prisma.FieldRef<"Plan", 'Int'>
+  readonly slug: Prisma.FieldRef<"Plan", 'Slug'>
+  readonly maxUsers: Prisma.FieldRef<"Plan", 'Int'>
   readonly priceCents: Prisma.FieldRef<"Plan", 'Int'>
   readonly mercadoPagoPlanId: Prisma.FieldRef<"Plan", 'String'>
-  readonly active: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Plan", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Plan", 'DateTime'>
 }
@@ -1632,30 +1452,6 @@ export type PlanDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Plans to delete.
    */
   limit?: number
-}
-
-/**
- * Plan.users
- */
-export type Plan$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**

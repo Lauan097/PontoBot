@@ -9,13 +9,12 @@
 * 🟢 You can import this file directly.
 */
 
-export const ServerLinkStatus = {
-  active: 'active',
-  unlinked: 'unlinked',
-  over_limit: 'over_limit'
+export const Slug = {
+  free: 'free',
+  andromeda: 'andromeda'
 } as const
 
-export type ServerLinkStatus = (typeof ServerLinkStatus)[keyof typeof ServerLinkStatus]
+export type Slug = (typeof Slug)[keyof typeof Slug]
 
 
 export const Action = {

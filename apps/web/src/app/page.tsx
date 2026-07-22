@@ -106,8 +106,8 @@ export default async function Root() {
     }))
 
     const userProfile = {
-      name: data.user?.name || data.user?.displayName || "Usuário",
-      avatar: data.user?.avatar || data.user?.avatarURL || null
+      name: data.user?.name || session.user?.name || "Usuário",
+      avatar: data.user?.avatar || session.user?.image || null
     }
 
     content = <ServersCard servers={mappedServers} user={userProfile} />

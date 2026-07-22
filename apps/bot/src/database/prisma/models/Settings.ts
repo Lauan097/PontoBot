@@ -41,6 +41,9 @@ export type SettingsMinAggregateOutputType = {
   welcomeChannelId: string | null
   pointOpenLogChannelId: string | null
   pointCloseLogChannelId: string | null
+  pointOpenRoleId: string | null
+  pointPauseRoleId: string | null
+  pointCloseRoleId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -52,6 +55,9 @@ export type SettingsMaxAggregateOutputType = {
   welcomeChannelId: string | null
   pointOpenLogChannelId: string | null
   pointCloseLogChannelId: string | null
+  pointOpenRoleId: string | null
+  pointPauseRoleId: string | null
+  pointCloseRoleId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -63,6 +69,9 @@ export type SettingsCountAggregateOutputType = {
   welcomeChannelId: number
   pointOpenLogChannelId: number
   pointCloseLogChannelId: number
+  pointOpenRoleId: number
+  pointPauseRoleId: number
+  pointCloseRoleId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -84,6 +93,9 @@ export type SettingsMinAggregateInputType = {
   welcomeChannelId?: true
   pointOpenLogChannelId?: true
   pointCloseLogChannelId?: true
+  pointOpenRoleId?: true
+  pointPauseRoleId?: true
+  pointCloseRoleId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -95,6 +107,9 @@ export type SettingsMaxAggregateInputType = {
   welcomeChannelId?: true
   pointOpenLogChannelId?: true
   pointCloseLogChannelId?: true
+  pointOpenRoleId?: true
+  pointPauseRoleId?: true
+  pointCloseRoleId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -106,6 +121,9 @@ export type SettingsCountAggregateInputType = {
   welcomeChannelId?: true
   pointOpenLogChannelId?: true
   pointCloseLogChannelId?: true
+  pointOpenRoleId?: true
+  pointPauseRoleId?: true
+  pointCloseRoleId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -204,6 +222,9 @@ export type SettingsGroupByOutputType = {
   welcomeChannelId: string | null
   pointOpenLogChannelId: string | null
   pointCloseLogChannelId: string | null
+  pointOpenRoleId: string | null
+  pointPauseRoleId: string | null
+  pointCloseRoleId: string | null
   createdAt: Date
   updatedAt: Date
   _count: SettingsCountAggregateOutputType | null
@@ -238,6 +259,9 @@ export type SettingsWhereInput = {
   welcomeChannelId?: Prisma.StringNullableFilter<"Settings"> | string | null
   pointOpenLogChannelId?: Prisma.StringNullableFilter<"Settings"> | string | null
   pointCloseLogChannelId?: Prisma.StringNullableFilter<"Settings"> | string | null
+  pointOpenRoleId?: Prisma.StringNullableFilter<"Settings"> | string | null
+  pointPauseRoleId?: Prisma.StringNullableFilter<"Settings"> | string | null
+  pointCloseRoleId?: Prisma.StringNullableFilter<"Settings"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Settings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Settings"> | Date | string
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
@@ -250,6 +274,9 @@ export type SettingsOrderByWithRelationInput = {
   welcomeChannelId?: Prisma.SortOrderInput | Prisma.SortOrder
   pointOpenLogChannelId?: Prisma.SortOrderInput | Prisma.SortOrder
   pointCloseLogChannelId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pointOpenRoleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pointPauseRoleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pointCloseRoleId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   guild?: Prisma.GuildOrderByWithRelationInput
@@ -265,6 +292,9 @@ export type SettingsWhereUniqueInput = Prisma.AtLeast<{
   welcomeChannelId?: Prisma.StringNullableFilter<"Settings"> | string | null
   pointOpenLogChannelId?: Prisma.StringNullableFilter<"Settings"> | string | null
   pointCloseLogChannelId?: Prisma.StringNullableFilter<"Settings"> | string | null
+  pointOpenRoleId?: Prisma.StringNullableFilter<"Settings"> | string | null
+  pointPauseRoleId?: Prisma.StringNullableFilter<"Settings"> | string | null
+  pointCloseRoleId?: Prisma.StringNullableFilter<"Settings"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Settings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Settings"> | Date | string
   guild?: Prisma.XOR<Prisma.GuildScalarRelationFilter, Prisma.GuildWhereInput>
@@ -277,6 +307,9 @@ export type SettingsOrderByWithAggregationInput = {
   welcomeChannelId?: Prisma.SortOrderInput | Prisma.SortOrder
   pointOpenLogChannelId?: Prisma.SortOrderInput | Prisma.SortOrder
   pointCloseLogChannelId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pointOpenRoleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pointPauseRoleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pointCloseRoleId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SettingsCountOrderByAggregateInput
@@ -296,6 +329,9 @@ export type SettingsScalarWhereWithAggregatesInput = {
   welcomeChannelId?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
   pointOpenLogChannelId?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
   pointCloseLogChannelId?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
+  pointOpenRoleId?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
+  pointPauseRoleId?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
+  pointCloseRoleId?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Settings"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Settings"> | Date | string
 }
@@ -306,6 +342,9 @@ export type SettingsCreateInput = {
   welcomeChannelId?: string | null
   pointOpenLogChannelId?: string | null
   pointCloseLogChannelId?: string | null
+  pointOpenRoleId?: string | null
+  pointPauseRoleId?: string | null
+  pointCloseRoleId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guild: Prisma.GuildCreateNestedOneWithoutSettingsInput
@@ -318,6 +357,9 @@ export type SettingsUncheckedCreateInput = {
   welcomeChannelId?: string | null
   pointOpenLogChannelId?: string | null
   pointCloseLogChannelId?: string | null
+  pointOpenRoleId?: string | null
+  pointPauseRoleId?: string | null
+  pointCloseRoleId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -328,6 +370,9 @@ export type SettingsUpdateInput = {
   welcomeChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointOpenLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointCloseLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointOpenRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointPauseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointCloseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guild?: Prisma.GuildUpdateOneRequiredWithoutSettingsNestedInput
@@ -340,6 +385,9 @@ export type SettingsUncheckedUpdateInput = {
   welcomeChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointOpenLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointCloseLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointOpenRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointPauseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointCloseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -351,6 +399,9 @@ export type SettingsCreateManyInput = {
   welcomeChannelId?: string | null
   pointOpenLogChannelId?: string | null
   pointCloseLogChannelId?: string | null
+  pointOpenRoleId?: string | null
+  pointPauseRoleId?: string | null
+  pointCloseRoleId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -361,6 +412,9 @@ export type SettingsUpdateManyMutationInput = {
   welcomeChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointOpenLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointCloseLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointOpenRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointPauseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointCloseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -372,6 +426,9 @@ export type SettingsUncheckedUpdateManyInput = {
   welcomeChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointOpenLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointCloseLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointOpenRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointPauseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointCloseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -388,6 +445,9 @@ export type SettingsCountOrderByAggregateInput = {
   welcomeChannelId?: Prisma.SortOrder
   pointOpenLogChannelId?: Prisma.SortOrder
   pointCloseLogChannelId?: Prisma.SortOrder
+  pointOpenRoleId?: Prisma.SortOrder
+  pointPauseRoleId?: Prisma.SortOrder
+  pointCloseRoleId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -403,6 +463,9 @@ export type SettingsMaxOrderByAggregateInput = {
   welcomeChannelId?: Prisma.SortOrder
   pointOpenLogChannelId?: Prisma.SortOrder
   pointCloseLogChannelId?: Prisma.SortOrder
+  pointOpenRoleId?: Prisma.SortOrder
+  pointPauseRoleId?: Prisma.SortOrder
+  pointCloseRoleId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -414,6 +477,9 @@ export type SettingsMinOrderByAggregateInput = {
   welcomeChannelId?: Prisma.SortOrder
   pointOpenLogChannelId?: Prisma.SortOrder
   pointCloseLogChannelId?: Prisma.SortOrder
+  pointOpenRoleId?: Prisma.SortOrder
+  pointPauseRoleId?: Prisma.SortOrder
+  pointCloseRoleId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -458,20 +524,15 @@ export type NullableBoolFieldUpdateOperationsInput = {
   set?: boolean | null
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type SettingsCreateWithoutGuildInput = {
   weeklyGoalActive?: boolean | null
   weeklyGoalSeconds?: number | null
   welcomeChannelId?: string | null
   pointOpenLogChannelId?: string | null
   pointCloseLogChannelId?: string | null
+  pointOpenRoleId?: string | null
+  pointPauseRoleId?: string | null
+  pointCloseRoleId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -482,6 +543,9 @@ export type SettingsUncheckedCreateWithoutGuildInput = {
   welcomeChannelId?: string | null
   pointOpenLogChannelId?: string | null
   pointCloseLogChannelId?: string | null
+  pointOpenRoleId?: string | null
+  pointPauseRoleId?: string | null
+  pointCloseRoleId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -508,6 +572,9 @@ export type SettingsUpdateWithoutGuildInput = {
   welcomeChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointOpenLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointCloseLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointOpenRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointPauseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointCloseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -518,6 +585,9 @@ export type SettingsUncheckedUpdateWithoutGuildInput = {
   welcomeChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointOpenLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pointCloseLogChannelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointOpenRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointPauseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pointCloseRoleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -531,6 +601,9 @@ export type SettingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   welcomeChannelId?: boolean
   pointOpenLogChannelId?: boolean
   pointCloseLogChannelId?: boolean
+  pointOpenRoleId?: boolean
+  pointPauseRoleId?: boolean
+  pointCloseRoleId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
@@ -543,6 +616,9 @@ export type SettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   welcomeChannelId?: boolean
   pointOpenLogChannelId?: boolean
   pointCloseLogChannelId?: boolean
+  pointOpenRoleId?: boolean
+  pointPauseRoleId?: boolean
+  pointCloseRoleId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
@@ -555,6 +631,9 @@ export type SettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   welcomeChannelId?: boolean
   pointOpenLogChannelId?: boolean
   pointCloseLogChannelId?: boolean
+  pointOpenRoleId?: boolean
+  pointPauseRoleId?: boolean
+  pointCloseRoleId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
@@ -567,11 +646,14 @@ export type SettingsSelectScalar = {
   welcomeChannelId?: boolean
   pointOpenLogChannelId?: boolean
   pointCloseLogChannelId?: boolean
+  pointOpenRoleId?: boolean
+  pointPauseRoleId?: boolean
+  pointCloseRoleId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"guildId" | "weeklyGoalActive" | "weeklyGoalSeconds" | "welcomeChannelId" | "pointOpenLogChannelId" | "pointCloseLogChannelId" | "createdAt" | "updatedAt", ExtArgs["result"]["settings"]>
+export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"guildId" | "weeklyGoalActive" | "weeklyGoalSeconds" | "welcomeChannelId" | "pointOpenLogChannelId" | "pointCloseLogChannelId" | "pointOpenRoleId" | "pointPauseRoleId" | "pointCloseRoleId" | "createdAt" | "updatedAt", ExtArgs["result"]["settings"]>
 export type SettingsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guild?: boolean | Prisma.GuildDefaultArgs<ExtArgs>
 }
@@ -594,6 +676,9 @@ export type $SettingsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     welcomeChannelId: string | null
     pointOpenLogChannelId: string | null
     pointCloseLogChannelId: string | null
+    pointOpenRoleId: string | null
+    pointPauseRoleId: string | null
+    pointCloseRoleId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["settings"]>
@@ -1026,6 +1111,9 @@ export interface SettingsFieldRefs {
   readonly welcomeChannelId: Prisma.FieldRef<"Settings", 'String'>
   readonly pointOpenLogChannelId: Prisma.FieldRef<"Settings", 'String'>
   readonly pointCloseLogChannelId: Prisma.FieldRef<"Settings", 'String'>
+  readonly pointOpenRoleId: Prisma.FieldRef<"Settings", 'String'>
+  readonly pointPauseRoleId: Prisma.FieldRef<"Settings", 'String'>
+  readonly pointCloseRoleId: Prisma.FieldRef<"Settings", 'String'>
   readonly createdAt: Prisma.FieldRef<"Settings", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Settings", 'DateTime'>
 }

@@ -17,5 +17,7 @@ createEvent({
             .catch((error) => {
                 console.error("[GUILD DELETE]", error);
             });
+
+        console.log("Removed Server: " + guild.name + " | " + guild.id);
     }
 });

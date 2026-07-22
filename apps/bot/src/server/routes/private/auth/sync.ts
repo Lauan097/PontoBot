@@ -2,20 +2,6 @@ import { prisma } from "#database";
 import { FastifyInstance } from "fastify";
 import { StatusCodes } from "http-status-codes";
 
-let cachedFreePlanId: string | null = null;
-
-async function getFreePlanId(): Promise<string> {
-    if (cachedFreePlanId) return cachedFreePlanId;
-
-    const freePlan = await prisma.plan.findUniqueOrThrow({
-        where: { slug: "free" },
-        select: { id: true },
-    });
-
-    cachedFreePlanId = freePlan.id;
-    return cachedFreePlanId;
-}
-
 export function syncRoute(app: FastifyInstance) {
     app.post("/auth/sync", async (req, res) => {
         const internalSecret = req.headers["x-internal-secret"];
@@ -43,7 +29,6 @@ export function syncRoute(app: FastifyInstance) {
         };
 
         try {
-            const freePlanId = await getFreePlanId();
 
             const user = await prisma.user.upsert({
                 where: { discordId },
@@ -62,8 +47,7 @@ export function syncRoute(app: FastifyInstance) {
                     avatar,
                     discordAccessToken: accessToken,
                     discordRefreshToken: refreshToken,
-                    discordTokenExpiresAt: expiresAt ? new Date(expiresAt) : null,
-                    currentPlanId: freePlanId
+                    discordTokenExpiresAt: expiresAt ? new Date(expiresAt) : null
                 }
             });
 

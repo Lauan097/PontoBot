@@ -50,10 +50,10 @@ export function guildsRoute(app: FastifyInstance, client: Client) {
                     };
                 });
 
-            const cachedUser = client.users.cache.get(user.discordId);
+            const fetchedUser = await client.users.fetch(user.discordId);
             const userProfile = {
-                name: cachedUser?.displayName || user.username,
-                avatar: cachedUser?.avatarURL() || (user.avatar ? `https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png` : null)
+                name: fetchedUser.displayName,
+                avatar: fetchedUser.avatarURL()
             };
 
             return res.status(StatusCodes.OK).send({

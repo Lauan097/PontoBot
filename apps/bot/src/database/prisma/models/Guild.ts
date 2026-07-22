@@ -33,6 +33,7 @@ export type GuildMinAggregateOutputType = {
   active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  isPremium: boolean | null
 }
 
 export type GuildMaxAggregateOutputType = {
@@ -44,6 +45,7 @@ export type GuildMaxAggregateOutputType = {
   active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  isPremium: boolean | null
 }
 
 export type GuildCountAggregateOutputType = {
@@ -55,6 +57,7 @@ export type GuildCountAggregateOutputType = {
   active: number
   createdAt: number
   updatedAt: number
+  isPremium: number
   _all: number
 }
 
@@ -68,6 +71,7 @@ export type GuildMinAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  isPremium?: true
 }
 
 export type GuildMaxAggregateInputType = {
@@ -79,6 +83,7 @@ export type GuildMaxAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  isPremium?: true
 }
 
 export type GuildCountAggregateInputType = {
@@ -90,6 +95,7 @@ export type GuildCountAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  isPremium?: true
   _all?: true
 }
 
@@ -174,6 +180,7 @@ export type GuildGroupByOutputType = {
   active: boolean
   createdAt: Date
   updatedAt: Date
+  isPremium: boolean
   _count: GuildCountAggregateOutputType | null
   _min: GuildMinAggregateOutputType | null
   _max: GuildMaxAggregateOutputType | null
@@ -206,7 +213,8 @@ export type GuildWhereInput = {
   active?: Prisma.BoolFilter<"Guild"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Guild"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Guild"> | Date | string
-  links?: Prisma.ServerLinkListRelationFilter
+  isPremium?: Prisma.BoolFilter<"Guild"> | boolean
+  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   templates?: Prisma.TemplateListRelationFilter
   memberFlow?: Prisma.MemberFlowListRelationFilter
   settings?: Prisma.XOR<Prisma.SettingsNullableScalarRelationFilter, Prisma.SettingsWhereInput> | null
@@ -223,7 +231,8 @@ export type GuildOrderByWithRelationInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  links?: Prisma.ServerLinkOrderByRelationAggregateInput
+  isPremium?: Prisma.SortOrder
+  subscription?: Prisma.SubscriptionOrderByWithRelationInput
   templates?: Prisma.TemplateOrderByRelationAggregateInput
   memberFlow?: Prisma.MemberFlowOrderByRelationAggregateInput
   settings?: Prisma.SettingsOrderByWithRelationInput
@@ -243,7 +252,8 @@ export type GuildWhereUniqueInput = Prisma.AtLeast<{
   active?: Prisma.BoolFilter<"Guild"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Guild"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Guild"> | Date | string
-  links?: Prisma.ServerLinkListRelationFilter
+  isPremium?: Prisma.BoolFilter<"Guild"> | boolean
+  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   templates?: Prisma.TemplateListRelationFilter
   memberFlow?: Prisma.MemberFlowListRelationFilter
   settings?: Prisma.XOR<Prisma.SettingsNullableScalarRelationFilter, Prisma.SettingsWhereInput> | null
@@ -260,6 +270,7 @@ export type GuildOrderByWithAggregationInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isPremium?: Prisma.SortOrder
   _count?: Prisma.GuildCountOrderByAggregateInput
   _max?: Prisma.GuildMaxOrderByAggregateInput
   _min?: Prisma.GuildMinOrderByAggregateInput
@@ -277,6 +288,7 @@ export type GuildScalarWhereWithAggregatesInput = {
   active?: Prisma.BoolWithAggregatesFilter<"Guild"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Guild"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Guild"> | Date | string
+  isPremium?: Prisma.BoolWithAggregatesFilter<"Guild"> | boolean
 }
 
 export type GuildCreateInput = {
@@ -288,7 +300,8 @@ export type GuildCreateInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsCreateNestedOneWithoutGuildInput
@@ -305,7 +318,8 @@ export type GuildUncheckedCreateInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkUncheckedCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowUncheckedCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutGuildInput
@@ -322,7 +336,8 @@ export type GuildUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutGuildNestedInput
@@ -339,7 +354,8 @@ export type GuildUncheckedUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUncheckedUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUncheckedUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutGuildNestedInput
@@ -356,6 +372,7 @@ export type GuildCreateManyInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  isPremium?: boolean
 }
 
 export type GuildUpdateManyMutationInput = {
@@ -367,6 +384,7 @@ export type GuildUpdateManyMutationInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type GuildUncheckedUpdateManyInput = {
@@ -378,6 +396,7 @@ export type GuildUncheckedUpdateManyInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type GuildCountOrderByAggregateInput = {
@@ -389,6 +408,7 @@ export type GuildCountOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isPremium?: Prisma.SortOrder
 }
 
 export type GuildMaxOrderByAggregateInput = {
@@ -400,6 +420,7 @@ export type GuildMaxOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isPremium?: Prisma.SortOrder
 }
 
 export type GuildMinOrderByAggregateInput = {
@@ -411,11 +432,16 @@ export type GuildMinOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isPremium?: Prisma.SortOrder
 }
 
 export type GuildScalarRelationFilter = {
   is?: Prisma.GuildWhereInput
   isNot?: Prisma.GuildWhereInput
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type GuildCreateNestedOneWithoutSettingsInput = {
@@ -444,20 +470,6 @@ export type GuildUpdateOneRequiredWithoutTemplatesNestedInput = {
   upsert?: Prisma.GuildUpsertWithoutTemplatesInput
   connect?: Prisma.GuildWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.GuildUpdateToOneWithWhereWithoutTemplatesInput, Prisma.GuildUpdateWithoutTemplatesInput>, Prisma.GuildUncheckedUpdateWithoutTemplatesInput>
-}
-
-export type GuildCreateNestedOneWithoutLinksInput = {
-  create?: Prisma.XOR<Prisma.GuildCreateWithoutLinksInput, Prisma.GuildUncheckedCreateWithoutLinksInput>
-  connectOrCreate?: Prisma.GuildCreateOrConnectWithoutLinksInput
-  connect?: Prisma.GuildWhereUniqueInput
-}
-
-export type GuildUpdateOneRequiredWithoutLinksNestedInput = {
-  create?: Prisma.XOR<Prisma.GuildCreateWithoutLinksInput, Prisma.GuildUncheckedCreateWithoutLinksInput>
-  connectOrCreate?: Prisma.GuildCreateOrConnectWithoutLinksInput
-  upsert?: Prisma.GuildUpsertWithoutLinksInput
-  connect?: Prisma.GuildWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.GuildUpdateToOneWithWhereWithoutLinksInput, Prisma.GuildUpdateWithoutLinksInput>, Prisma.GuildUncheckedUpdateWithoutLinksInput>
 }
 
 export type GuildCreateNestedOneWithoutAuditsInput = {
@@ -502,6 +514,20 @@ export type GuildUpdateOneRequiredWithoutMemberFlowNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.GuildUpdateToOneWithWhereWithoutMemberFlowInput, Prisma.GuildUpdateWithoutMemberFlowInput>, Prisma.GuildUncheckedUpdateWithoutMemberFlowInput>
 }
 
+export type GuildCreateNestedOneWithoutSubscriptionInput = {
+  create?: Prisma.XOR<Prisma.GuildCreateWithoutSubscriptionInput, Prisma.GuildUncheckedCreateWithoutSubscriptionInput>
+  connectOrCreate?: Prisma.GuildCreateOrConnectWithoutSubscriptionInput
+  connect?: Prisma.GuildWhereUniqueInput
+}
+
+export type GuildUpdateOneRequiredWithoutSubscriptionNestedInput = {
+  create?: Prisma.XOR<Prisma.GuildCreateWithoutSubscriptionInput, Prisma.GuildUncheckedCreateWithoutSubscriptionInput>
+  connectOrCreate?: Prisma.GuildCreateOrConnectWithoutSubscriptionInput
+  upsert?: Prisma.GuildUpsertWithoutSubscriptionInput
+  connect?: Prisma.GuildWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GuildUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.GuildUpdateWithoutSubscriptionInput>, Prisma.GuildUncheckedUpdateWithoutSubscriptionInput>
+}
+
 export type GuildCreateWithoutSettingsInput = {
   id?: string
   discordId: string
@@ -511,7 +537,8 @@ export type GuildCreateWithoutSettingsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowCreateNestedManyWithoutGuildInput
   members?: Prisma.MemberCreateNestedManyWithoutGuildInput
@@ -527,7 +554,8 @@ export type GuildUncheckedCreateWithoutSettingsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkUncheckedCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowUncheckedCreateNestedManyWithoutGuildInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutGuildInput
@@ -559,7 +587,8 @@ export type GuildUpdateWithoutSettingsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUpdateManyWithoutGuildNestedInput
   members?: Prisma.MemberUpdateManyWithoutGuildNestedInput
@@ -575,7 +604,8 @@ export type GuildUncheckedUpdateWithoutSettingsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUncheckedUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUncheckedUpdateManyWithoutGuildNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutGuildNestedInput
@@ -591,7 +621,8 @@ export type GuildCreateWithoutTemplatesInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutGuildInput
   memberFlow?: Prisma.MemberFlowCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsCreateNestedOneWithoutGuildInput
   members?: Prisma.MemberCreateNestedManyWithoutGuildInput
@@ -607,7 +638,8 @@ export type GuildUncheckedCreateWithoutTemplatesInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkUncheckedCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutGuildInput
   memberFlow?: Prisma.MemberFlowUncheckedCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutGuildInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutGuildInput
@@ -639,7 +671,8 @@ export type GuildUpdateWithoutTemplatesInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUpdateOneWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutGuildNestedInput
   members?: Prisma.MemberUpdateManyWithoutGuildNestedInput
@@ -655,87 +688,8 @@ export type GuildUncheckedUpdateWithoutTemplatesInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUncheckedUpdateManyWithoutGuildNestedInput
-  memberFlow?: Prisma.MemberFlowUncheckedUpdateManyWithoutGuildNestedInput
-  settings?: Prisma.SettingsUncheckedUpdateOneWithoutGuildNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutGuildNestedInput
-  audits?: Prisma.AuditUncheckedUpdateManyWithoutGuildNestedInput
-}
-
-export type GuildCreateWithoutLinksInput = {
-  id?: string
-  discordId: string
-  name: string
-  icon?: string | null
-  ownerDiscordId: string
-  active?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  templates?: Prisma.TemplateCreateNestedManyWithoutGuildInput
-  memberFlow?: Prisma.MemberFlowCreateNestedManyWithoutGuildInput
-  settings?: Prisma.SettingsCreateNestedOneWithoutGuildInput
-  members?: Prisma.MemberCreateNestedManyWithoutGuildInput
-  audits?: Prisma.AuditCreateNestedManyWithoutGuildInput
-}
-
-export type GuildUncheckedCreateWithoutLinksInput = {
-  id?: string
-  discordId: string
-  name: string
-  icon?: string | null
-  ownerDiscordId: string
-  active?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutGuildInput
-  memberFlow?: Prisma.MemberFlowUncheckedCreateNestedManyWithoutGuildInput
-  settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutGuildInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutGuildInput
-  audits?: Prisma.AuditUncheckedCreateNestedManyWithoutGuildInput
-}
-
-export type GuildCreateOrConnectWithoutLinksInput = {
-  where: Prisma.GuildWhereUniqueInput
-  create: Prisma.XOR<Prisma.GuildCreateWithoutLinksInput, Prisma.GuildUncheckedCreateWithoutLinksInput>
-}
-
-export type GuildUpsertWithoutLinksInput = {
-  update: Prisma.XOR<Prisma.GuildUpdateWithoutLinksInput, Prisma.GuildUncheckedUpdateWithoutLinksInput>
-  create: Prisma.XOR<Prisma.GuildCreateWithoutLinksInput, Prisma.GuildUncheckedCreateWithoutLinksInput>
-  where?: Prisma.GuildWhereInput
-}
-
-export type GuildUpdateToOneWithWhereWithoutLinksInput = {
-  where?: Prisma.GuildWhereInput
-  data: Prisma.XOR<Prisma.GuildUpdateWithoutLinksInput, Prisma.GuildUncheckedUpdateWithoutLinksInput>
-}
-
-export type GuildUpdateWithoutLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  discordId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerDiscordId?: Prisma.StringFieldUpdateOperationsInput | string
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  templates?: Prisma.TemplateUpdateManyWithoutGuildNestedInput
-  memberFlow?: Prisma.MemberFlowUpdateManyWithoutGuildNestedInput
-  settings?: Prisma.SettingsUpdateOneWithoutGuildNestedInput
-  members?: Prisma.MemberUpdateManyWithoutGuildNestedInput
-  audits?: Prisma.AuditUpdateManyWithoutGuildNestedInput
-}
-
-export type GuildUncheckedUpdateWithoutLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  discordId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ownerDiscordId?: Prisma.StringFieldUpdateOperationsInput | string
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  templates?: Prisma.TemplateUncheckedUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUncheckedUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutGuildNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutGuildNestedInput
@@ -751,7 +705,8 @@ export type GuildCreateWithoutAuditsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsCreateNestedOneWithoutGuildInput
@@ -767,7 +722,8 @@ export type GuildUncheckedCreateWithoutAuditsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkUncheckedCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowUncheckedCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutGuildInput
@@ -799,7 +755,8 @@ export type GuildUpdateWithoutAuditsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutGuildNestedInput
@@ -815,7 +772,8 @@ export type GuildUncheckedUpdateWithoutAuditsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUncheckedUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUncheckedUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutGuildNestedInput
@@ -831,7 +789,8 @@ export type GuildCreateWithoutMembersInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsCreateNestedOneWithoutGuildInput
@@ -847,7 +806,8 @@ export type GuildUncheckedCreateWithoutMembersInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkUncheckedCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutGuildInput
   memberFlow?: Prisma.MemberFlowUncheckedCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutGuildInput
@@ -879,7 +839,8 @@ export type GuildUpdateWithoutMembersInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutGuildNestedInput
@@ -895,7 +856,8 @@ export type GuildUncheckedUpdateWithoutMembersInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUncheckedUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutGuildNestedInput
   memberFlow?: Prisma.MemberFlowUncheckedUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutGuildNestedInput
@@ -911,7 +873,8 @@ export type GuildCreateWithoutMemberFlowInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsCreateNestedOneWithoutGuildInput
   members?: Prisma.MemberCreateNestedManyWithoutGuildInput
@@ -927,7 +890,8 @@ export type GuildUncheckedCreateWithoutMemberFlowInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  links?: Prisma.ServerLinkUncheckedCreateNestedManyWithoutGuildInput
+  isPremium?: boolean
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutGuildInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutGuildInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutGuildInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutGuildInput
@@ -959,7 +923,8 @@ export type GuildUpdateWithoutMemberFlowInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutGuildNestedInput
   members?: Prisma.MemberUpdateManyWithoutGuildNestedInput
@@ -975,8 +940,93 @@ export type GuildUncheckedUpdateWithoutMemberFlowInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  links?: Prisma.ServerLinkUncheckedUpdateManyWithoutGuildNestedInput
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutGuildNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutGuildNestedInput
+  settings?: Prisma.SettingsUncheckedUpdateOneWithoutGuildNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutGuildNestedInput
+  audits?: Prisma.AuditUncheckedUpdateManyWithoutGuildNestedInput
+}
+
+export type GuildCreateWithoutSubscriptionInput = {
+  id?: string
+  discordId: string
+  name: string
+  icon?: string | null
+  ownerDiscordId: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isPremium?: boolean
+  templates?: Prisma.TemplateCreateNestedManyWithoutGuildInput
+  memberFlow?: Prisma.MemberFlowCreateNestedManyWithoutGuildInput
+  settings?: Prisma.SettingsCreateNestedOneWithoutGuildInput
+  members?: Prisma.MemberCreateNestedManyWithoutGuildInput
+  audits?: Prisma.AuditCreateNestedManyWithoutGuildInput
+}
+
+export type GuildUncheckedCreateWithoutSubscriptionInput = {
+  id?: string
+  discordId: string
+  name: string
+  icon?: string | null
+  ownerDiscordId: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isPremium?: boolean
+  templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutGuildInput
+  memberFlow?: Prisma.MemberFlowUncheckedCreateNestedManyWithoutGuildInput
+  settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutGuildInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutGuildInput
+  audits?: Prisma.AuditUncheckedCreateNestedManyWithoutGuildInput
+}
+
+export type GuildCreateOrConnectWithoutSubscriptionInput = {
+  where: Prisma.GuildWhereUniqueInput
+  create: Prisma.XOR<Prisma.GuildCreateWithoutSubscriptionInput, Prisma.GuildUncheckedCreateWithoutSubscriptionInput>
+}
+
+export type GuildUpsertWithoutSubscriptionInput = {
+  update: Prisma.XOR<Prisma.GuildUpdateWithoutSubscriptionInput, Prisma.GuildUncheckedUpdateWithoutSubscriptionInput>
+  create: Prisma.XOR<Prisma.GuildCreateWithoutSubscriptionInput, Prisma.GuildUncheckedCreateWithoutSubscriptionInput>
+  where?: Prisma.GuildWhereInput
+}
+
+export type GuildUpdateToOneWithWhereWithoutSubscriptionInput = {
+  where?: Prisma.GuildWhereInput
+  data: Prisma.XOR<Prisma.GuildUpdateWithoutSubscriptionInput, Prisma.GuildUncheckedUpdateWithoutSubscriptionInput>
+}
+
+export type GuildUpdateWithoutSubscriptionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  discordId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ownerDiscordId?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  templates?: Prisma.TemplateUpdateManyWithoutGuildNestedInput
+  memberFlow?: Prisma.MemberFlowUpdateManyWithoutGuildNestedInput
+  settings?: Prisma.SettingsUpdateOneWithoutGuildNestedInput
+  members?: Prisma.MemberUpdateManyWithoutGuildNestedInput
+  audits?: Prisma.AuditUpdateManyWithoutGuildNestedInput
+}
+
+export type GuildUncheckedUpdateWithoutSubscriptionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  discordId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ownerDiscordId?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  templates?: Prisma.TemplateUncheckedUpdateManyWithoutGuildNestedInput
+  memberFlow?: Prisma.MemberFlowUncheckedUpdateManyWithoutGuildNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutGuildNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutGuildNestedInput
   audits?: Prisma.AuditUncheckedUpdateManyWithoutGuildNestedInput
@@ -988,7 +1038,6 @@ export type GuildUncheckedUpdateWithoutMemberFlowInput = {
  */
 
 export type GuildCountOutputType = {
-  links: number
   templates: number
   memberFlow: number
   members: number
@@ -996,7 +1045,6 @@ export type GuildCountOutputType = {
 }
 
 export type GuildCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  links?: boolean | GuildCountOutputTypeCountLinksArgs
   templates?: boolean | GuildCountOutputTypeCountTemplatesArgs
   memberFlow?: boolean | GuildCountOutputTypeCountMemberFlowArgs
   members?: boolean | GuildCountOutputTypeCountMembersArgs
@@ -1011,13 +1059,6 @@ export type GuildCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the GuildCountOutputType
    */
   select?: Prisma.GuildCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * GuildCountOutputType without action
- */
-export type GuildCountOutputTypeCountLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ServerLinkWhereInput
 }
 
 /**
@@ -1058,7 +1099,8 @@ export type GuildSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  links?: boolean | Prisma.Guild$linksArgs<ExtArgs>
+  isPremium?: boolean
+  subscription?: boolean | Prisma.Guild$subscriptionArgs<ExtArgs>
   templates?: boolean | Prisma.Guild$templatesArgs<ExtArgs>
   memberFlow?: boolean | Prisma.Guild$memberFlowArgs<ExtArgs>
   settings?: boolean | Prisma.Guild$settingsArgs<ExtArgs>
@@ -1076,6 +1118,7 @@ export type GuildSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isPremium?: boolean
 }, ExtArgs["result"]["guild"]>
 
 export type GuildSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1087,6 +1130,7 @@ export type GuildSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isPremium?: boolean
 }, ExtArgs["result"]["guild"]>
 
 export type GuildSelectScalar = {
@@ -1098,11 +1142,12 @@ export type GuildSelectScalar = {
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isPremium?: boolean
 }
 
-export type GuildOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "discordId" | "name" | "icon" | "ownerDiscordId" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["guild"]>
+export type GuildOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "discordId" | "name" | "icon" | "ownerDiscordId" | "active" | "createdAt" | "updatedAt" | "isPremium", ExtArgs["result"]["guild"]>
 export type GuildInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  links?: boolean | Prisma.Guild$linksArgs<ExtArgs>
+  subscription?: boolean | Prisma.Guild$subscriptionArgs<ExtArgs>
   templates?: boolean | Prisma.Guild$templatesArgs<ExtArgs>
   memberFlow?: boolean | Prisma.Guild$memberFlowArgs<ExtArgs>
   settings?: boolean | Prisma.Guild$settingsArgs<ExtArgs>
@@ -1116,7 +1161,7 @@ export type GuildIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $GuildPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Guild"
   objects: {
-    links: Prisma.$ServerLinkPayload<ExtArgs>[]
+    subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
     templates: Prisma.$TemplatePayload<ExtArgs>[]
     memberFlow: Prisma.$MemberFlowPayload<ExtArgs>[]
     settings: Prisma.$SettingsPayload<ExtArgs> | null
@@ -1132,6 +1177,7 @@ export type $GuildPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     active: boolean
     createdAt: Date
     updatedAt: Date
+    isPremium: boolean
   }, ExtArgs["result"]["guild"]>
   composites: {}
 }
@@ -1526,7 +1572,7 @@ readonly fields: GuildFieldRefs;
  */
 export interface Prisma__GuildClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  links<T extends Prisma.Guild$linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscription<T extends Prisma.Guild$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$subscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   templates<T extends Prisma.Guild$templatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$templatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberFlow<T extends Prisma.Guild$memberFlowArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$memberFlowArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberFlowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   settings<T extends Prisma.Guild$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Guild$settingsArgs<ExtArgs>>): Prisma.Prisma__SettingsClient<runtime.Types.Result.GetResult<Prisma.$SettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -1569,6 +1615,7 @@ export interface GuildFieldRefs {
   readonly active: Prisma.FieldRef<"Guild", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Guild", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Guild", 'DateTime'>
+  readonly isPremium: Prisma.FieldRef<"Guild", 'Boolean'>
 }
     
 
@@ -1962,27 +2009,22 @@ export type GuildDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Guild.links
+ * Guild.subscription
  */
-export type Guild$linksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Guild$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ServerLink
+   * Select specific fields to fetch from the Subscription
    */
-  select?: Prisma.ServerLinkSelect<ExtArgs> | null
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ServerLink
+   * Omit specific fields from the Subscription
    */
-  omit?: Prisma.ServerLinkOmit<ExtArgs> | null
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServerLinkInclude<ExtArgs> | null
-  where?: Prisma.ServerLinkWhereInput
-  orderBy?: Prisma.ServerLinkOrderByWithRelationInput | Prisma.ServerLinkOrderByWithRelationInput[]
-  cursor?: Prisma.ServerLinkWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ServerLinkScalarFieldEnum | Prisma.ServerLinkScalarFieldEnum[]
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
 }
 
 /**

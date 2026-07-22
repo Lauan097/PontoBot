@@ -10,7 +10,10 @@ model Guild {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    links     ServerLink[]
+    isPremium Boolean @default(false)
+
+    subscription Subscription?
+
     templates Template[]
     memberFlow MemberFlow[]
     settings  Settings?
@@ -32,6 +35,10 @@ model Settings {
     pointOpenLogChannelId  String?
     pointCloseLogChannelId String?
 
+    pointOpenRoleId        String?
+    pointPauseRoleId       String?
+    pointCloseRoleId       String?
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
@@ -51,34 +58,6 @@ model Template {
 
     @@index([guildId])
     @@map("templates")
-}
-
-model ServerLink {
-    id             String       @id @default(cuid())
-
-    guildId        String
-    guild          Guild        @relation(fields: [guildId], references: [id], onDelete: Restrict)
-    subscriptionId String
-    subscription   Subscription @relation(fields: [subscriptionId], references: [userId], onDelete: Cascade)
-
-    linkedByUserId String
-
-    lastKnownMemberCount Int      @default(0)
-    memberCountCheckedAt DateTime @default(now())
-
-    status     ServerLinkStatus @default(active)
-    linkedAt   DateTime         @default(now())
-    unlinkedAt DateTime?
-
-    @@index([guildId])
-    @@index([subscriptionId])
-    @@map("server_links")
-}
-
-enum ServerLinkStatus {
-    active
-    unlinked
-    over_limit
 }
 
 model Audit {

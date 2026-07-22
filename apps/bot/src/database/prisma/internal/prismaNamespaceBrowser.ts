@@ -55,7 +55,6 @@ export const ModelName = {
   Guild: 'Guild',
   Settings: 'Settings',
   Template: 'Template',
-  ServerLink: 'ServerLink',
   Audit: 'Audit',
   Member: 'Member',
   PointSession: 'PointSession',
@@ -83,13 +82,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const PlanScalarFieldEnum = {
   id: 'id',
-  slug: 'slug',
   name: 'name',
-  maxServers: 'maxServers',
-  maxMembersPool: 'maxMembersPool',
+  slug: 'slug',
+  maxUsers: 'maxUsers',
   priceCents: 'priceCents',
   mercadoPagoPlanId: 'mercadoPagoPlanId',
-  active: 'active',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -105,7 +102,8 @@ export const GuildScalarFieldEnum = {
   ownerDiscordId: 'ownerDiscordId',
   active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isPremium: 'isPremium'
 } as const
 
 export type GuildScalarFieldEnum = (typeof GuildScalarFieldEnum)[keyof typeof GuildScalarFieldEnum]
@@ -118,6 +116,9 @@ export const SettingsScalarFieldEnum = {
   welcomeChannelId: 'welcomeChannelId',
   pointOpenLogChannelId: 'pointOpenLogChannelId',
   pointCloseLogChannelId: 'pointCloseLogChannelId',
+  pointOpenRoleId: 'pointOpenRoleId',
+  pointPauseRoleId: 'pointPauseRoleId',
+  pointCloseRoleId: 'pointCloseRoleId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -135,21 +136,6 @@ export const TemplateScalarFieldEnum = {
 } as const
 
 export type TemplateScalarFieldEnum = (typeof TemplateScalarFieldEnum)[keyof typeof TemplateScalarFieldEnum]
-
-
-export const ServerLinkScalarFieldEnum = {
-  id: 'id',
-  guildId: 'guildId',
-  subscriptionId: 'subscriptionId',
-  linkedByUserId: 'linkedByUserId',
-  lastKnownMemberCount: 'lastKnownMemberCount',
-  memberCountCheckedAt: 'memberCountCheckedAt',
-  status: 'status',
-  linkedAt: 'linkedAt',
-  unlinkedAt: 'unlinkedAt'
-} as const
-
-export type ServerLinkScalarFieldEnum = (typeof ServerLinkScalarFieldEnum)[keyof typeof ServerLinkScalarFieldEnum]
 
 
 export const AuditScalarFieldEnum = {
@@ -242,7 +228,6 @@ export const UserScalarFieldEnum = {
   discordAccessToken: 'discordAccessToken',
   discordRefreshToken: 'discordRefreshToken',
   discordTokenExpiresAt: 'discordTokenExpiresAt',
-  currentPlanId: 'currentPlanId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -251,7 +236,9 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 
 export const SubscriptionScalarFieldEnum = {
-  userId: 'userId',
+  id: 'id',
+  guildId: 'guildId',
+  payerId: 'payerId',
   planId: 'planId',
   mercadoPagoPreapprovalId: 'mercadoPagoPreapprovalId',
   currentPeriodStart: 'currentPeriodStart',

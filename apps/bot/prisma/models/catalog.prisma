@@ -1,31 +1,22 @@
-/*
-
-Free = Até 8.000 membros com um limite de uso de 900 membros por servidor
-Basic = Até 1 Servidor | Até 30.000 membros com um limite de uso de 4.000 membros
-Advanced = Até 5 Servidores | Até 80.000 membros com um limite de uso de 30.000 membros
-Enterprise = Até 10 Servidores | Até 200.000 membros com um limite de uso de 60.000 membros
-
-*/
-
 model Plan {
     id   String @id @default(cuid())
-    slug String @unique
     name String
+    slug Slug? @unique
 
-    maxServers     Int
-    maxMembersPool Int
-
-    priceCents Int
-
+    maxUsers    Int?
+    priceCents  Int?
+    
     mercadoPagoPlanId String?
-
-    active Boolean @default(true)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    users         User[]
     subscriptions Subscription[]
 
     @@map("plans")
+}
+
+enum Slug {
+    free
+    andromeda
 }

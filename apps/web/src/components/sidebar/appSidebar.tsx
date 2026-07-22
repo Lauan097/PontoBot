@@ -44,9 +44,9 @@ import {
 import {
   ChartSpline, ChevronsUpDown, 
   Clock, Home, LogOut, SquareArrowOutUpRight,
-  Palette, Settings, SlidersHorizontal, ShieldCheck, 
+  Palette, Settings, SlidersHorizontal, ShieldCheck,
   Command, Ellipsis, Headset, UserCircle, Info, FileText,
-  CodeXml, 
+  CodeXml, Crown, Send,
 } from "lucide-react"
 
 const mainItems = [
@@ -158,10 +158,21 @@ export function AppSidebar({ user, servers, ...props }: AppSidebarProps) {
             </SidebarMenu>
           </SidebarGroup>
         ))}
+        
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
+            <SidebarMenuButton className="text-xs" asChild>
+              <Link href={"/" + guildId + "/premium"}><Crown /> Premium</Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton className="text-xs" asChild>
+              <Link href={"/feedback"} target="_blank"><Send /> Feedback</Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem className="pt-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton 
@@ -214,12 +225,7 @@ export function AppSidebar({ user, servers, ...props }: AppSidebarProps) {
                       <SquareArrowOutUpRight />
                     </DropdownMenuShortcut>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <ShieldCheck />
-                    Auditoria
-                  </DropdownMenuItem>
                 </DropdownMenuGroup>
-                <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <Headset />

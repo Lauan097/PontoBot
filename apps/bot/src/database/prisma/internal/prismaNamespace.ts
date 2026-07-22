@@ -388,7 +388,6 @@ export const ModelName = {
   Guild: 'Guild',
   Settings: 'Settings',
   Template: 'Template',
-  ServerLink: 'ServerLink',
   Audit: 'Audit',
   Member: 'Member',
   PointSession: 'PointSession',
@@ -411,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "plan" | "guild" | "settings" | "template" | "serverLink" | "audit" | "member" | "pointSession" | "pause" | "memberFlow" | "user" | "subscription"
+    modelProps: "plan" | "guild" | "settings" | "template" | "audit" | "member" | "pointSession" | "pause" | "memberFlow" | "user" | "subscription"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -708,80 +707,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.TemplateCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.TemplateCountAggregateOutputType> | number
-        }
-      }
-    }
-    ServerLink: {
-      payload: Prisma.$ServerLinkPayload<ExtArgs>
-      fields: Prisma.ServerLinkFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.ServerLinkFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.ServerLinkFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>
-        }
-        findFirst: {
-          args: Prisma.ServerLinkFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.ServerLinkFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>
-        }
-        findMany: {
-          args: Prisma.ServerLinkFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>[]
-        }
-        create: {
-          args: Prisma.ServerLinkCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>
-        }
-        createMany: {
-          args: Prisma.ServerLinkCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.ServerLinkCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>[]
-        }
-        delete: {
-          args: Prisma.ServerLinkDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>
-        }
-        update: {
-          args: Prisma.ServerLinkUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>
-        }
-        deleteMany: {
-          args: Prisma.ServerLinkDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.ServerLinkUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.ServerLinkUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>[]
-        }
-        upsert: {
-          args: Prisma.ServerLinkUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServerLinkPayload>
-        }
-        aggregate: {
-          args: Prisma.ServerLinkAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateServerLink>
-        }
-        groupBy: {
-          args: Prisma.ServerLinkGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ServerLinkGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.ServerLinkCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ServerLinkCountAggregateOutputType> | number
         }
       }
     }
@@ -1344,13 +1269,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const PlanScalarFieldEnum = {
   id: 'id',
-  slug: 'slug',
   name: 'name',
-  maxServers: 'maxServers',
-  maxMembersPool: 'maxMembersPool',
+  slug: 'slug',
+  maxUsers: 'maxUsers',
   priceCents: 'priceCents',
   mercadoPagoPlanId: 'mercadoPagoPlanId',
-  active: 'active',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1366,7 +1289,8 @@ export const GuildScalarFieldEnum = {
   ownerDiscordId: 'ownerDiscordId',
   active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isPremium: 'isPremium'
 } as const
 
 export type GuildScalarFieldEnum = (typeof GuildScalarFieldEnum)[keyof typeof GuildScalarFieldEnum]
@@ -1379,6 +1303,9 @@ export const SettingsScalarFieldEnum = {
   welcomeChannelId: 'welcomeChannelId',
   pointOpenLogChannelId: 'pointOpenLogChannelId',
   pointCloseLogChannelId: 'pointCloseLogChannelId',
+  pointOpenRoleId: 'pointOpenRoleId',
+  pointPauseRoleId: 'pointPauseRoleId',
+  pointCloseRoleId: 'pointCloseRoleId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1396,21 +1323,6 @@ export const TemplateScalarFieldEnum = {
 } as const
 
 export type TemplateScalarFieldEnum = (typeof TemplateScalarFieldEnum)[keyof typeof TemplateScalarFieldEnum]
-
-
-export const ServerLinkScalarFieldEnum = {
-  id: 'id',
-  guildId: 'guildId',
-  subscriptionId: 'subscriptionId',
-  linkedByUserId: 'linkedByUserId',
-  lastKnownMemberCount: 'lastKnownMemberCount',
-  memberCountCheckedAt: 'memberCountCheckedAt',
-  status: 'status',
-  linkedAt: 'linkedAt',
-  unlinkedAt: 'unlinkedAt'
-} as const
-
-export type ServerLinkScalarFieldEnum = (typeof ServerLinkScalarFieldEnum)[keyof typeof ServerLinkScalarFieldEnum]
 
 
 export const AuditScalarFieldEnum = {
@@ -1503,7 +1415,6 @@ export const UserScalarFieldEnum = {
   discordAccessToken: 'discordAccessToken',
   discordRefreshToken: 'discordRefreshToken',
   discordTokenExpiresAt: 'discordTokenExpiresAt',
-  currentPlanId: 'currentPlanId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1512,7 +1423,9 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 
 export const SubscriptionScalarFieldEnum = {
-  userId: 'userId',
+  id: 'id',
+  guildId: 'guildId',
+  payerId: 'payerId',
   planId: 'planId',
   mercadoPagoPreapprovalId: 'mercadoPagoPreapprovalId',
   currentPeriodStart: 'currentPeriodStart',
@@ -1590,6 +1503,20 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'Slug'
+ */
+export type EnumSlugFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Slug'>
+    
+
+
+/**
+ * Reference to a field of type 'Slug[]'
+ */
+export type ListEnumSlugFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Slug[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1600,13 +1527,6 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1625,6 +1545,13 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -1635,20 +1562,6 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-    
-
-
-/**
- * Reference to a field of type 'ServerLinkStatus'
- */
-export type EnumServerLinkStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServerLinkStatus'>
-    
-
-
-/**
- * Reference to a field of type 'ServerLinkStatus[]'
- */
-export type ListEnumServerLinkStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ServerLinkStatus[]'>
     
 
 
@@ -1863,7 +1776,6 @@ export type GlobalOmitConfig = {
   guild?: Prisma.GuildOmit
   settings?: Prisma.SettingsOmit
   template?: Prisma.TemplateOmit
-  serverLink?: Prisma.ServerLinkOmit
   audit?: Prisma.AuditOmit
   member?: Prisma.MemberOmit
   pointSession?: Prisma.PointSessionOmit

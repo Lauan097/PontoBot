@@ -1,6 +1,6 @@
-import { bootstrap } from "@constatic/base";
-import "#server";
 import "dotenv/config";
+import "#server";
+import { bootstrap } from "@constatic/base";
 
 await bootstrap({
     meta: import.meta,
