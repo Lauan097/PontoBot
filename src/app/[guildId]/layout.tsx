@@ -6,16 +6,11 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import type { Metadata } from "next"
 import Image from "next/image"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 import { redirect } from "next/navigation"
 import { cookies } from "next/headers"
-
-export const metadata: Metadata = {
-  title: "PontoBot — Página Inicial"
-}
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -34,7 +29,7 @@ export default async function DashboardLayout({
   const { guildId } = await params
 
   const apiUrl = process.env.FASTIFY_API_URL
-  const res = await fetch(`${apiUrl}/initial-page/${guildId}`, {
+  const res = await fetch(`${apiUrl}/guilds/${guildId}/initial-page`, {
     headers: {
       "X-Internal-Secret": process.env.INTERNAL_API_SECRET!,
       "X-User-Id": session.user.id,

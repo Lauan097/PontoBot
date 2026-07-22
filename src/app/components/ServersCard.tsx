@@ -14,8 +14,6 @@ import { Marker, MarkerContent } from "@/components/ui/marker"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ChevronRight, LogOutIcon, MonitorX, Plus, User } from "lucide-react"
 import { signOut } from "next-auth/react"
-import { useRouter } from "next/navigation"
-import { useTransition } from "react"
 
 interface Guild {
   id: string
@@ -36,9 +34,7 @@ interface ServersCardProps {
 }
 
 export function ServersCard({ servers, user }: ServersCardProps) {
-  const router = useRouter()
-  const [isPending, startTransition] = useTransition()
-  
+
   return (
     <Card className="rounded-2xl border-border/60 p-6 w-full h-full bg-card/50 flex flex-col">
       <div className="flex items-center justify-between mb-4">
@@ -77,10 +73,8 @@ export function ServersCard({ servers, user }: ServersCardProps) {
         <Button
           variant="secondary"
           onClick={() =>
-            window.open(
-              "https://discord.com/oauth2/authorize?client_id=1519203592014266438&permissions=8&scope=bot",
-              "_blank"
-            )
+            (window.location.href =
+              "https://discord.com/oauth2/authorize?client_id=1519203592014266438&permissions=8&scope=bot")
           }
         >
           <Plus />
@@ -105,8 +99,6 @@ export function ServersCard({ servers, user }: ServersCardProps) {
             <Button variant="outline" asChild>
               <a
                 href="https://discord.com/oauth2/authorize?client_id=1519203592014266438&permissions=8&scope=bot"
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 <Plus />
                 Adicionar PontoBot
@@ -219,7 +211,7 @@ export function ServersCard({ servers, user }: ServersCardProps) {
                           className="text-xs border-border h-8 w-full"
                           onClick={() =>
                             (window.location.href =
-                              "https://discord.com/oauth2/authorize?scope=bot+applications.commands&response_type=code&redirect_uri=http://localhost:3000&prompt=none&permissions=1101596716286&client_id=1519203592014266438")
+                              "https://discord.com/oauth2/authorize?scope=bot+applications.commands&response_type=code&redirect_uri=http://localhost:3000&permissions=1101596716286&client_id=1519203592014266438&guild_id=" + server.id)
                           }
                         >
                           Adicionar
